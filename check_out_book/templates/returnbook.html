@@ -1,0 +1,44 @@
+{%extends "base.html"%}
+{%block title%}반납하기{%endblock%}
+{%block page_content%}
+
+
+{% if rentbook_list %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<div class="container">
+    <!-- <div class='row'>
+        <div class="col-12">
+            <ul class="list-group"> -->
+    {% for book in rentbook_list%}
+    <div class="book-item">
+        <!--a href를 목록밖으로 빼면 전체 바 눌러도 인식-->
+        <img class="book-image" src={{book.book_link}}>
+        <li class="book-list-item">{{ book.book_name }}
+            <div class="star-ratings">
+                <div class="star-ratings-fill space-x-2 text-lg" style="width:{{book.rating*20+1.5}}%">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+                <div class="star-ratings-base space-x-2 text-lg">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+            </div>
+            <p>별점: {{book.rating}}점</p>
+            <p>대여날짜: {{book.start_date}}</p>
+            <form action="/returnbook/{{ book.id }}" method="post">
+                <input class="btn btn-primary" type="submit" value="반납하기">
+            </form>
+        </li>
+    </div>
+
+
+    {% endfor %}
+    <!-- </ul>
+        </div>
+    </div> -->
+</div>
+{% else %}
+<p>빌린 책이 없어요...</p>
+
+{% endif %}
+
+{%endblock%}

@@ -1,0 +1,41 @@
+<nav class="navbar">
+    <!-- <div class="container"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <a style="text-decoration-line: none; color:white; font-family: 'Gowun Dodum', sans-serif;" class="nav-title"
+        href="{{ url_for('main.home') }}">도서 대출
+        서비스</a>
+    <!-- <div class="collapse navbar-collapse flex-grow-0" id="navbarNav"> -->
+    <nav class="nav-nav">
+        {% if session['email'] %}
+
+        <ul class="nav">
+
+            <li class="nav-item">
+                <span class="nav-link" style="color:white;">안녕하세요! {{session['name']}}님</span>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('main.checkout')}}">대여기록</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('main.returnbooklist')}}">반납하기</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('main.logout')}}">로그아웃</a>
+            </li>
+        </ul>
+        {% else %}
+        <ul class="nav">
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('main.join')}}">회원가입</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('main.login')}}">로그인</a>
+            </li>
+        </ul>
+        {%endif%}
+    </nav>
+    <!-- </div> -->
+    <!-- </div> -->
+</nav>
