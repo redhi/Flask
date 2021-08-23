@@ -1,9 +1,9 @@
-{% extends "base.html" %}
+{% extends "Base.html" %}
 
 {% block page_content %}
 
 
-<form action="{{ url_for('main.login') }}" method="post">
+<form action="{{ url_for('user.login') }}" method="post">
     <div class="form-group">
         <label for="email">아이디</label>
         <input class="form-control" type="email" name="email" id="email" placeholder="아이디 입력">

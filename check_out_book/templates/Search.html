@@ -1,0 +1,10 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+<!--CDN 링크 -->
+<form action="{{ url_for('main.searchbook') }}" method="post">
+    <nav class="navbar2">
+        <div class="search">
+            <input type="text" name="keyword" placeholder="검색어 입력">
+            <button><i class="fa fa-search" aria-hidden="true"></i></button>
+        </div>
+    </nav>
+</form>

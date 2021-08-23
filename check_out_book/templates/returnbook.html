@@ -1,4 +1,4 @@
-{%extends "base.html"%}
+{%extends "Base.html"%}
 {%block title%}반납하기{%endblock%}
 {%block page_content%}
 
@@ -12,21 +12,24 @@
     {% for book in rentbook_list%}
     <div class="book-item">
         <!--a href를 목록밖으로 빼면 전체 바 눌러도 인식-->
-        <img class="book-image" src={{book.book_link}}>
-        <li class="book-list-item">{{ book.book_name }}
-            <div class="star-ratings">
-                <div class="star-ratings-fill space-x-2 text-lg" style="width:{{book.rating*20+1.5}}%">
-                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                </div>
-                <div class="star-ratings-base space-x-2 text-lg">
-                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                </div>
+        <a style="text-decoration-line: none; color:black;" href="/detail/book/{{ book.book_id }}">
+            <!--a href를 목록밖으로 빼면 전체 바 눌러도 인식-->
+            <img class="book-image" src=../../{{book.book_link}}>
+            <li class="book-list-item">{{ book.book_name }}
+        </a>
+        <div class="star-ratings">
+            <div class="star-ratings-fill space-x-2 text-lg" style="width:{{book.rating*20+1.5}}%">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
             </div>
-            <p>별점: {{book.rating}}점</p>
-            <p>대여날짜: {{book.start_date}}</p>
-            <form action="/returnbook/{{ book.id }}" method="post">
-                <input class="btn btn-primary" type="submit" value="반납하기">
-            </form>
+            <div class="star-ratings-base space-x-2 text-lg">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+        </div>
+        <p>별점: {{book.rating}}점</p>
+        <p>대여날짜: {{book.start_date}}</p>
+        <form action="/return/{{ book.id }}" method="post">
+            <input class="btn btn-primary" type="submit" value="반납하기">
+        </form>
         </li>
     </div>
 

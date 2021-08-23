@@ -14,24 +14,29 @@
                 <span class="nav-link" style="color:white;">안녕하세요! {{session['name']}}님</span>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{url_for('main.checkout')}}">대여기록</a>
+                <a class="nav-link" href="{{url_for('libraryinfo.libraryinfo')}}">도서관 소개</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{url_for('main.returnbooklist')}}">반납하기</a>
+                <a class="nav-link" href="{{url_for('total.checkout')}}">대여기록</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{url_for('main.logout')}}">로그아웃</a>
+                <a class="nav-link" href="{{url_for('return.returnbooklist')}}">반납하기</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('user.logout')}}">로그아웃</a>
             </li>
         </ul>
         {% else %}
         <ul class="nav">
-
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('libraryinfo.libraryinfo')}}">도서관 소개</a>
+            </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{url_for('main.join')}}">회원가입</a>
+                <a class="nav-link" href="{{url_for('user.join')}}">회원가입</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{url_for('main.login')}}">로그인</a>
+                <a class="nav-link" href="{{url_for('user.login')}}">로그인</a>
             </li>
         </ul>
         {%endif%}

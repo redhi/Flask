@@ -1,0 +1,60 @@
+{% extends "Base.html" %}
+{% block page_content %}
+<div class="libraryinfo">
+    <h2>이용안내</h2>
+
+    <h3><i class="fas fa-book"></i> 대출</h3>
+    <h4><i class="fas fa-book-open"></i> 대출 기간</h4>
+    <p> 1인 5권 2주일간(1회 1주일 연기 가능)</p>
+
+    <h3><i class="fas fa-book"></i> 대출예약</h3>
+    <p>흠</p>
+
+    <h3><i class="fas fa-book"></i> 반납</h3>
+    <p> 기간 내 반납하기 탭에 반납하기 버튼을 이용</p>
+
+    <h4><i class="fas fa-book-open"></i> 연체반납</h4>
+    <p> 반납예정일을 지나 반납하였을 경우 반납일 이후 연체된 일수만큼 대출 정지됩니다.</p>
+    <p> 예) 4권 2일 연체 시 → 4권×2일 = 8일 대출정지 발생</p>
+
+    <h4><i class="fas fa-book-open"></i> 도서변상</h4>
+    <p> 대출자료 분실·훼손 시 동일자료로 변상함이 원칙이며, 절판 등의 사유로 동일자료 변상이 어려운 경우 시가로 변상해야 합니다.</p>
+    <hr>
+    <h2>찾아오시는 길</h2>
+</div>
+<div id="map" style="height:400px"></div>
+<script type="text/javascript"
+    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=28cfff31d17f98bc1e1a1182b2f87eca&libraries=services"></script>
+<script>
+    const container = document.getElementById('map');
+
+    const option = { // 지도를 생성할 떄 필요한 기본 옵션
+        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        level: 3, // 지도의 레벨(확대,축소 정도)
+        //marker: markers,
+    };
+    const map = new kakao.maps.Map(container, option);
+
+
+    // Geolocation, Geocoding
+    const geocoder = new kakao.maps.services.Geocoder();
+    geocoder.addressSearch("후암동 30-84", function (result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+            const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+            const marker = new kakao.maps.Marker({
+                position: coords,
+                text: "우리집"
+            });
+            const infoWindow = new kakao.maps.InfoWindow({
+
+                content: '<div style="width:150px; text-align:center; padding:6px 0">남산도서관</div>',
+            });
+            infoWindow.open(map, marker);
+
+            map.setCenter(coords);
+        }
+    });
+
+
+</script>
+{% endblock %}
