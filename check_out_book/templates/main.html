@@ -24,10 +24,15 @@
         </div>
         <p>별점: {{book.rating}}점</p>
         <p>{{book.stock}}권 남음</p>
-
+        {%if book.stock == 0%}
+        <form action="/reservation/{{ book.id }}" method="post">
+            <input class="btn btn-primary" type="submit" value="예약하기">
+        </form>
+        {%else%}
         <form action="/check_out/{{ book.id }}" method="post">
             <input class="btn btn-primary" type="submit" value="대여하기">
         </form>
+        {%endif%}
         </li>
     </div>
 

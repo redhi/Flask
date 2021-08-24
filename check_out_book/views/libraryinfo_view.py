@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, session
+from flask import Flask, Blueprint, render_template, session
 
 bp = Blueprint('libraryinfo', __name__, url_prefix='/')
 

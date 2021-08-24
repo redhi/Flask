@@ -30,12 +30,14 @@
 
     <div class="container2">
         <!-- 각 페이지의 내용이 들어감 -->
-
-        {%for message in get_flashed_messages() %}
-        <div class="alert alert-info">
-            {{message}}
+        <div class="alert2">
+            {%for message in get_flashed_messages() %}
+            <div class="alert alert-info">
+                {{message}}
+            </div>
+            {%endfor%}
         </div>
-        {%endfor%}
+
         {% block page_content %}
 
         {% endblock %}

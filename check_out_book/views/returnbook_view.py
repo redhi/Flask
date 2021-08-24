@@ -1,3 +1,4 @@
+import datetime
 from flask import Blueprint, render_template, request, url_for, session, flash
 from check_out_book.models import *
 from werkzeug.utils import redirect
@@ -9,12 +10,16 @@ bp = Blueprint('return', __name__, url_prefix='/return')
 def returnbooklist():
     rentbook_list = CheckOutBook.query.filter_by(
         user_id=session['email']).all()
-    return render_template('ReturnBook.html', rentbook_list=rentbook_list)
+    now = datetime.datetime.now()
+    datenow = datetime.date(now.year, now.month, now.day)
+    return render_template('ReturnBook.html', rentbook_list=rentbook_list, datenow=datenow)
 
 
 @bp.route('/<int:pid>', methods=('POST',))
 def returnbook(pid):
     print(pid)
+    now = datetime.datetime.now()
+    datenow = datetime.date(now.year, now.month, now.day)
     book = CheckOutBook.query.filter_by(id=pid).first()
     print(book)
     findbook = Book.query.filter_by(id=book.book_id).first()
@@ -23,7 +28,7 @@ def returnbook(pid):
 
     totalcheck_out = TotalCheckOutBook(book_id=book.book_id, user_id=session['email'],
                                        book_name=book.book_name, book_link=findbook.link,
-                                       start_date=book.start_date, end_date=book.end_date,
+                                       start_date=book.start_date, end_date=datenow,
                                        rating=book.rating)
     db.session.add(totalcheck_out)
     db.session.delete(book)

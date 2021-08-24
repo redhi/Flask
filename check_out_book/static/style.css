@@ -21,6 +21,17 @@
  
  
 }
+.alert2 {
+  color:white;
+  font-family: 'Gowun Dodum', sans-serif;
+  font-weight: bold;
+  background-color:#A3C9A8;
+  margin-bottom: 10px;
+
+}
+.alert {
+  padding: 10px;
+}
 .search {
  
  height: 42px;
@@ -272,6 +283,14 @@ a.book-list-item {
     border: 1px solid #84B59F; background-color: rgba(0,0,0,0); color: #84B59F; padding: 5px;
 
     }
+    .btn2 {
+      font-family: 'Gowun Dodum', sans-serif;
+      font-size:16px;
+      font-weight: bold;
+      border-radius: 5px;
+      border: 1px solid #090a0a; background-color: rgba(0,0,0,0); color: #090a0a; padding: 5px;
+  
+      }
   .star-btn {
     width: 90%;
     margin: 10px auto;

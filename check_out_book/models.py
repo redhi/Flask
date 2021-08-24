@@ -58,6 +58,19 @@ class CheckOutBook(db.Model):
     # rating 유의해서 짜자
 
 
+class ReservationBook(db.Model):
+
+    __tablename__ = 'RESERVATION_BOOK'
+
+    id = db.Column(db.Integer, primary_key=True,
+                   nullable=False, autoincrement=True)
+    book_id = db.Column(db.String(100), db.ForeignKey(
+        'BOOK.id'), nullable=False)
+    book_name = db.Column(db.String(100), nullable=False)
+    user_id = db.Column(db.String(70), db.ForeignKey('LIBRARY_USER.email'))
+    create_time = db.Column(db.Date)
+
+
 class TotalCheckOutBook(db.Model):
 
     __tablename__ = 'TOTAL_CHECK_OUT_BOOK'
@@ -88,6 +101,7 @@ class BookReview(db.Model):
     rating = db.Column(db.Float)
     content = db.Column(db.Text())
     create_time = db.Column(db.Date)
+    imagelink = db.Column(db.String(225))
 
     # def __init__(self, id, book_id, user_name, user_id, rating, content, create_time):
     #    now = datetime.datetime.now()

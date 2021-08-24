@@ -24,13 +24,13 @@ def home():
             datenow = datetime.date(now.year, now.month, now.day)
             leftover = rentbook.end_date - datenow
 
-            if leftover.days <= 14:  # 일단 확인하기 위해 대출기한 전체로 잡음
+            if 0 <= leftover.days <= 3:  # 일단 확인하기 위해 대출기한 전체로 잡음 3일내로 들어왔을 때
                 flash(rentbook.book_name+"의 반납 기간이 " +
                       str(leftover.days)+"일 남았습니다")
 
-            if leftover.days > 0:  # 원래는 leftover.days<0: 확인위해 바꿈
+            if leftover.days < 0:  # 원래는 leftover.days<0: 확인위해 바꿈
                 flash(rentbook.book_name+"의 반납 기간이 지났습니다. 도서관으로 방문해서 반납해주세요!")
-
+            
         return render_template('Main.html', book_list=book_list, rentbook_list=rentbook_list)
     return render_template('Main.html', book_list=book_list)
 
@@ -42,7 +42,7 @@ def check_check_out(book_id):
     if request.method == 'POST':
         book = Book.query.filter_by(id=book_id).first()
 
-        if not session:
+        if 'email' not in session:
             flash("로그인 하십시오.")
             return redirect(url_for('main.home'))
 
@@ -62,6 +62,25 @@ def check_check_out(book_id):
         if rentbooknum > 4:  # 최대 5권 빌릴 수 있다고 가정
             flash("빌릴 수 있는 권수를 초과하였습니다")
             return redirect(url_for('main.home'))
+        
+        datenow = datetime.date(now.year, now.month, now.day)
+        rentbooklist = CheckOutBook.query.filter_by(user_id=session['email']).all()
+        count = 0
+        stopdate = 0
+
+        for rentbook in rentbooklist:
+            leftover = rentbook.end_date - datenow
+            print(leftover.days)
+            if leftover.days < 0:
+                print(leftover.days)
+                stopdate += abs(leftover.days)
+                print(stopdate)
+                count += 1
+        finalstopdate = stopdate * count
+        
+        if finalstopdate > 0:          
+            flash("연체반납이 일어나 "+str(finalstopdate)+"일만큼 대출정지가 발생했습니다. 도서관 이용안내를 참고해주세요!")
+            return redirect(url_for('main.home'))
 
         book.stock -= 1
         db.session.commit()
@@ -77,7 +96,44 @@ def check_check_out(book_id):
         flash("정상 처리되었습니다.")
 
     return redirect(url_for('main.home'))
+#만들어 놓긴 하는데 좋은 기능은 아닌것같다
+@bp.route('/reservation/<int:book_id>', methods=('POST',))
+def reservation(book_id):
+    now = datetime.datetime.now()
 
+    if request.method == 'POST':
+        book = Book.query.filter_by(id=book_id).first()
+
+        if 'email' not in session:
+            flash("로그인 하십시오.")
+            return redirect(url_for('main.home'))
+
+        samerentbooknum = CheckOutBook.query.filter_by(user_id=session['email'],book_id=book.id).count()
+        reservationbooknum = ReservationBook.query.filter_by(
+            user_id=session['email']).count()
+        samereservationbooknum = ReservationBook.query.filter_by(
+            book_id=book.id, user_id=session['email']).count()
+        
+        if samerentbooknum > 0:
+            flash("이미 빌린 책입니다.")
+            return redirect(url_for('main.home'))
+
+        if samereservationbooknum > 0:
+            flash("이미 예약한 책입니다.")
+            return redirect(url_for('main.home'))
+
+        if reservationbooknum > 1:  # 최대 2권 예약할 수 있다고 가정
+            flash("예약할 수 있는 권수를 초과하였습니다")
+            return redirect(url_for('main.home'))
+        reservationbook = ReservationBook(book_id=book_id,book_name=book.book_name,
+                                    user_id=session['email'],create_time=datetime.date(
+                                     now.year, now.month, now.day))
+        db.session.add(reservationbook)
+        db.session.commit()
+    
+        flash("정상 처리되었습니다.")
+
+    return redirect(url_for('main.home'))
 
 @bp.route('/search', methods=('POST',))
 def searchbook():

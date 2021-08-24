@@ -18,16 +18,18 @@ def register():
         user = LibraryUser.query.filter_by(
             email=request.form['email_id']).first()
 
-        if not request.form['email_id'] or not request.form['password2'] or not request.form['password'] or not request.form['name']:
+        if not (request.form['email_id'] or request.form['password2'] or request.form['password'] or request.form['name']):
             flash("모든 입력창을 채우세요")
             return redirect(url_for('user.register'))
 
         if not user:
             reg = re.compile("^[ㄱ-ㅎ|가-힣|a-z|A-Z|]+$")
             correctname = reg.match(request.form['name'])
+
             if correctname is None:
                 flash("이름은 한글 또는 영어만 입력할 수 있습니다.")
                 return redirect(url_for('user.register'))
+
             if request.form['password2'] != request.form['password']:
                 flash("비밀번호가 일치하지 않습니다")
                 return redirect(url_for('user.register'))
@@ -35,22 +37,25 @@ def register():
             reg2 = re.compile(
                 "^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$")
             correctpw = reg2.match(request.form['password'])
+
             if correctpw is None:
                 flash("비밀번호는 영문자, 숫자, 특수문자가 각각 한 개 이상이여야 합니다.")
                 return redirect(url_for('user.register'))
+
             password = hashpw(
                 request.form['password'].encode('utf-8'), gensalt())
             user = LibraryUser(email=request.form['email_id'], password=password,
                                name=request.form['name'])
             db.session.add(user)
             db.session.commit()
+            flash("회원가입에 성공했습니다.")
+            return redirect(url_for('main.home'))
 
-        else:
-            flash("이미 가입된 아이디입니다.")
-            return redirect(url_for('user.register'))
+        flash("이미 가입된 아이디입니다.")
+        return redirect(url_for('user.register'))
 
-        flash("회원가입에 성공했습니다.")
-        return redirect(url_for('user.home'))
+    
+    return redirect(url_for('user.register'))
 
 
 @bp.route('/login', methods=('GET',))
@@ -71,9 +76,11 @@ def login():
     if not checkpw(password.encode("utf-8"), user_data.password):
         flash("아이디와 비밀번호가 일치하지 않습니다.")
         return redirect(url_for('user.login_try'))
+        
     if len(request.form['password']) < 7:
         flash("비밀번호는 최소 8자리 이상 입력해야 합니다.")
         return redirect(url_for('user.login_try'))
+        
     session.clear()
     session['email'] = email
     session['name'] = user_data.name

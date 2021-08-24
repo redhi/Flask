@@ -20,7 +20,6 @@ def create_app():
     Migrate().init_app(app, db)
 
     from .views import main_view, detail_view, totalcheckout_view, returnbook_view, libraryinfo_view, user_view
-
     from . import models
 
     app.register_blueprint(main_view.bp)

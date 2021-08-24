@@ -50,7 +50,7 @@ def create_review(book_id):
 
         flash("모두 작성하세요.")
         return redirect(url_for('detail.book_detail', book_id=book_id))
-    return redirect(url_for('detail.book_detail'))
+    return redirect(url_for('detail.book_detail'), book_id=book_id)
 
 
 @bp.route('/deletereview/<int:book_id>/<int:review_id>')
@@ -64,12 +64,17 @@ def delete_review(book_id, review_id):
         return redirect(url_for('detail.book_detail', book_id=book_id))
 
     nowrate = rate.rating*ratenum-review_info.rating
-    rate.rating = round(nowrate/(ratenum-1), 1)
+    print(ratenum)
 
+    if ratenum == 1:
+        rate.rating = 0
+    else:
+        rate.rating = round(nowrate/(ratenum-1), 1)
+    print(rate.rating)
     CheckOutBook.query.filter_by(book_id=book_id).update(
-        {'rating': round(nowrate/(ratenum-1), 1)})
+        {'rating': rate.rating})
     TotalCheckOutBook.query.filter_by(
-        book_id=book_id).update({'rating': round(nowrate/(ratenum-1), 1)})
+        book_id=book_id).update({'rating': rate.rating})
     print(rate)
 
     db.session.delete(review_info)
@@ -92,7 +97,7 @@ def modify_review(book_id, review_id):
 
     if review_info.user_id != session['email']:
         flash("수정할 권한이 없습니다.")
-        return redirect(url_for('detail.book_detail'))
+        return redirect(url_for('detail.book_detail'), book_id=book_id)
 
     # 현재 총점을 계산함(수정하기 전 미리 내 점수 빼놓자)
     nowrate = rate.rating*ratenum-review_info.rating

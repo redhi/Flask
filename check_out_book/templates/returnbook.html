@@ -27,10 +27,15 @@
         </div>
         <p>별점: {{book.rating}}점</p>
         <p>대여날짜: {{book.start_date}}</p>
-        <form action="/return/{{ book.id }}" method="post">
-            <input class="btn btn-primary" type="submit" value="반납하기">
-        </form>
-        </li>
+        <p>반납기한: {{book.end_date}}</p>
+        {%if book.end_date < datenow %} <input class="btn2 btn-primary" type="submit" disabled='disabled' value="반납불가">
+
+            {%else%}
+            <form action="/return/{{ book.id }}" method="post">
+                <input class="btn btn-primary" type="submit" value="반납하기">
+            </form>
+            {%endif%}
+            </li>
     </div>
 
 
