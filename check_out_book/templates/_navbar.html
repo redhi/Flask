@@ -11,7 +11,8 @@
         <ul class="nav">
 
             <li class="nav-item">
-                <span class="nav-link" style="color:white;">안녕하세요! {{session['name']}}님</span>
+                <a class="nav-link" href="{{url_for('user.withdraw_try')}}" style="color:white;">안녕하세요!
+                    {{session['name']}}님</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{url_for('libraryinfo.libraryinfo')}}">도서관 소개</a>

@@ -10,9 +10,9 @@
         <div class="col-12">
             <ul class="list-group"> -->
     {% for book in rentbook_list%}
-    <div class="book-item">
+    <div id={{book.book_id}} class="book-item">
         <!--a href를 목록밖으로 빼면 전체 바 눌러도 인식-->
-        <a style="text-decoration-line: none; color:black;" href="/detail/book/{{ book.book_id }}">
+        <a style="text-decoration-line: none; color:black;" href="/detail/book/{{ book.book_id }}/12398978982">
             <!--a href를 목록밖으로 빼면 전체 바 눌러도 인식-->
             <img class="book-image" src=../../{{book.book_link}}>
             <li class="book-list-item">{{ book.book_name }}

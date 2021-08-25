@@ -1,0 +1,14 @@
+{% extends "Base.html" %}
+{% block page_content %}
+<div class="libraryinfo">
+    <h2>마이페이지</h2>
+    <form action="{{ url_for('user.withdraw') }}" method="post">
+
+        <input class="photoupload2" type="submit" value="탈퇴">
+
+
+    </form>
+
+</div>
+
+{% endblock %}

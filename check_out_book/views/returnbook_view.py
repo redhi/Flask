@@ -33,5 +33,7 @@ def returnbook(pid):
     db.session.add(totalcheck_out)
     db.session.delete(book)
     db.session.commit()
-    flash("반납되었습니다")
+    flash("반납되었습니다.")
+    # return redirect(url_for('total.checkout'))
+    # return redirect("/../../"+"#"+str(book.book_id))
     return redirect(url_for('return.returnbooklist'))  # 함수명!!! main.함수명

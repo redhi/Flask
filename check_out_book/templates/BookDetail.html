@@ -26,28 +26,44 @@
 <hr>
 <div class="review">
     <h2>댓글</h2>
-    <div class="review-now">현재 {{ review_info|length }} 개의 댓글 있습니다.</div>
+    <div class="review-now">현재 {{ review_info|length }} 개의 댓글이 있습니다.</div>
     {% for review in review_info %}
     <div class="review-user">
         <p> {{review.user_name}}</p>
-        <div class="star-ratings">
-            <div class="star-ratings-fill space-x-2 text-lg" style="width:{{review.rating*20+1.5}}%">
-                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-            </div>
-            <div class="star-ratings-base space-x-2 text-lg">
-                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        {% if (review.imagelink == none) or (review.imagelink|int == 12398978982) %}
+        <!-- {{review.imagelink}}
+        {{review.imagelink|int}} -->
+        {%else%}
+        <!-- {{review.imagelink}} -->
+        <img class="detailphoto-img" src="../../../static/uploads/{{review.imagelink}}">
+        {%endif%}
+        <div style="margin-bottom: 10px;">
+            <span>
+                {{ review.rating }}</span> {{ review.content }}
+            {{review.create_time}}
+            <div class="star-ratings">
+                <div class="star-ratings-fill space-x-2 text-lg" style="width:{{review.rating*20+1.5}}%">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+                <div class="star-ratings-base space-x-2 text-lg">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
             </div>
         </div>
-        <span>
-            {{ review.rating }}</span> {{ review.content }}
-        {{review.create_time}}
+
         {% if session['email'] == review.user_id %}
         <!--bookReview에 user_id 추가해주기!!!!!!-->
-        <a class="btn btn-danger btn-sm"
-            href="{{ url_for('detail.modify_review', book_id=book_info.id, review_id=review.id)}}">수정</a>
-        <a class="btn btn-danger btn-sm"
-            href="{{ url_for('detail.delete_review', book_id=book_info.id, review_id=review.id)}}">삭제</a>
-
+        {% set photolink = review.imagelink %}
+        {%if review.imagelink == none %}
+        {% set photolink = 12398978982 %}
+        {%endif%}
+        <!-- {{photolink}} -->
+        <div id="modi">
+            <a class="btn btn-danger btn-sm"
+                href="{{ url_for('detail.modify_review', book_id=book_info.id, review_id=review.id,photolink=photolink)}}">수정</a>
+            <a class="btn btn-danger btn-sm"
+                href="{{ url_for('detail.delete_review', book_id=book_info.id, review_id=review.id)}}">삭제</a>
+        </div>
         {%endif%}
         </p>
     </div>
@@ -58,9 +74,26 @@
     {% if session['email'] %}
     <h2>댓글 작성</h2>
     <!--아래도 id를 user_id로!!!!!!!!!-->
-    <form action="{{ url_for('detail.create_review', book_id=book_info.id) }}" method="post">
+
+    <div id="photo" class="photoupload">
+        <form action="{{ url_for('detail.upload_file',book_id=book_info.id) }}" method="post"
+            enctype="multipart/form-data">
+            <div class="filebox bs3-primary preview-image">
+                <input class="upload-name" value="파일선택" disabled="disabled" style="width: 200px;">
+                <label class="upload-label" for="input_file">업로드</label>
+                <input type="file" name='file' id="input_file" class="upload-hidden">
+                <input class="photoupload2" type="submit" value="제출">
+            </div>
+
+        </form>
+        {% if (photolink == none) or (photolink|int == 12398978982) %}
+        {%else%}
+        <img class="detailphoto-img" src="../../../static/uploads/{{photolink}}">
+        {%endif%}
+    </div>
+    <form action="{{ url_for('detail.create_review', book_id=book_info.id, photolink=photolink) }}" method="post">
         <div class="form-group">
-            <label for="review">댓글</label>
+            <!-- <label for="review">댓글</label> -->
             <input class="form-control" name="review" id="review" placeholder="댓글을 작성해주세요."></input>
         </div>
         <div class="star-btn">
@@ -79,6 +112,7 @@
             <input class="btn btn-primary" type="submit" value="작성하기">
         </div>
     </form>
+
     {% endif %}
 </div>
 {% endif %}

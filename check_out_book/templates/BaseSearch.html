@@ -32,9 +32,17 @@
         <!-- 각 페이지의 내용이 들어감 -->
         <div class="alert2">
             {%for message in get_flashed_messages() %}
+            {%if message=="정상 처리되었습니다."%}
+            <script type="text/javascript">
+                alert("{{message}}");
+            </script>
+            {%else%}
             <div class="alert alert-info">
+
                 {{message}}
+                {%endif%}
             </div>
+
             {%endfor%}
         </div>
 
