@@ -95,7 +95,7 @@
         {%endif%}
         <!--bookReview에 user_id 추가해주기!!!!!!-->
         <a class="btn btn-danger btn-sm"
-            href="{{ url_for('detail.modify_review', book_id=book_info.id, review_id=review.id,photolink=photolink)}}">수정</a>
+            href="{{ url_for('detail.modify_review', book_id=book_info.id, review_id=review.id,photolink=photolink)}}#modiphoto">수정</a>
         <a class="btn btn-danger btn-sm"
             href="{{ url_for('detail.delete_review', book_id=book_info.id, review_id=review.id)}}">삭제</a>
 

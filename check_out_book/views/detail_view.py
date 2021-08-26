@@ -55,7 +55,7 @@ def create_review(book_id, photolink):
             return redirect(url_for('detail.book_detail', book_id=book_id, photolink=photolink))
 
         flash("모두 작성하세요.")
-        return redirect(url_for('detail.book_detail', book_id=book_id, photolink=photolink))
+        return redirect("/../detail/book/"+str(book_id)+"/"+photolink+"#"+"photo")
     return redirect(url_for('detail.book_detail', book_id=book_id, photolink=photolink))
 
 
@@ -149,7 +149,7 @@ def modify_review2(book_id, review_id, nowrate, ratenum, photolink):
             photolink = 12398978982
             return redirect(url_for('detail.book_detail', book_id=book_id, photolink=photolink))
         flash("모두 작성하세요.")
-        return redirect(url_for('detail.book_detail', book_id=book_id, photolink=photolink))
+        return redirect("/../detail/book/"+str(book_id)+"/"+photolink+"#"+"photo")
     return redirect(url_for('detail.book_detail', book_id=book_id, photolink=photolink))
 
 
@@ -162,7 +162,7 @@ def render_file():
 def upload_file(book_id):
     if request.method == 'POST':
         f = request.files['file']
-        f.save('/home/redhi/minji/ELICEWEBPROJECT/check_out_book/static/uploads/' +
+        f.save('check_out_book/static/uploads/' +
                f.filename)
         photolink = f.filename
         finalphotolink = 'static/uploads/'+f.filename
@@ -178,7 +178,7 @@ def modiupload_file(book_id, review_id):
     print(review_id)
     if request.method == 'POST':
         f = request.files['file']
-        f.save('/home/redhi/minji/ELICEWEBPROJECT/check_out_book/static/uploads/' +
+        f.save('check_out_book/static/uploads/' +
                f.filename)
         photolink = f.filename
         finalphotolink = 'static/uploads/'+f.filename

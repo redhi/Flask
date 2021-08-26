@@ -84,6 +84,15 @@ def check_check_out(book_id):
             flash("연체반납이 일어나 "+str(finalstopdate) +
                   "일만큼 대출정지가 발생했습니다. 도서관 이용안내를 참고해주세요!")
             return redirect(url_for('main.home'))
+        reservationbook = ReservationBook.query.filter_by(
+            user_id=session['email'], book_id=book_id).first()
+        # 예약된 책이 있으면 - 만약 대출정지나 권수 초과로 대기순번 넘어가 있다가 나중에 빌릴때
+        print("예약된 책있냐!!!")
+        print(reservationbook)
+        if reservationbook is not None:
+            flash("예약된 책이 대여되었습니다.")
+            db.session.delete(reservationbook)
+            db.session.commit()
 
         book.stock -= 1
         db.session.commit()
@@ -132,13 +141,15 @@ def reservation(book_id):
         if reservationbooknum > 1:  # 최대 2권 예약할 수 있다고 가정
             flash("예약할 수 있는 권수를 초과하였습니다")
             return redirect(url_for('main.home'))
+        booknum = ReservationBook.query.filter_by(book_id=book_id).count()
+        booknum += 1
         reservationbook = ReservationBook(book_id=book_id, book_name=book.book_name,
                                           user_id=session['email'], create_time=datetime.date(
-                                              now.year, now.month, now.day))
+                                              now.year, now.month, now.day), book_link=book.link, book_num=booknum)
         db.session.add(reservationbook)
         db.session.commit()
 
-        flash("정상 처리되었습니다.")
+        flash(str(booknum)+"번 째로 예약되었습니다.")
 
     return redirect(url_for('main.home'))
 

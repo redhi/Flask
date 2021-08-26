@@ -19,7 +19,7 @@ def create_app():
     db.init_app(app)  # SQLAlchemy 객체를 app 객체와 이어줍니다.
     Migrate().init_app(app, db)
 
-    from .views import main_view, detail_view, totalcheckout_view, returnbook_view, libraryinfo_view, user_view
+    from .views import main_view, detail_view, totalcheckout_view, returnbook_view, libraryinfo_view, user_view, mypage_view
     from . import models
 
     app.register_blueprint(main_view.bp)
@@ -28,6 +28,7 @@ def create_app():
     app.register_blueprint(returnbook_view.bp)
     app.register_blueprint(libraryinfo_view.bp)
     app.register_blueprint(user_view.bp)
+    app.register_blueprint(mypage_view.bp)
     # 비밀번호 암호화
     app.secret_key = 'afsfsa'
     # 세션 일정시간 서버 저장파일

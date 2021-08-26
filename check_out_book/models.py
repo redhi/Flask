@@ -69,6 +69,8 @@ class ReservationBook(db.Model):
     book_name = db.Column(db.String(100), nullable=False)
     user_id = db.Column(db.String(70), db.ForeignKey('LIBRARY_USER.email'))
     create_time = db.Column(db.Date)
+    book_link = db.Column(db.String(255))
+    book_num = db.Column(db.Integer)
 
 
 class TotalCheckOutBook(db.Model):

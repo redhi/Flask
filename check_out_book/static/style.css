@@ -1,184 +1,171 @@
-
-
 .navbar {
-    /* width: 100%;
-    height: 40px; */
-    margin-bottom:10px;
+  /* width: 100%;
+  height: 40px; */
+  margin-bottom: 10px;
 
-    display: flex;
-    background: #84B59F	;
-    padding: 20px;
-    justify-content: space-between;
+  display: flex;
+  background: #84b59f;
+  padding: 20px;
+  justify-content: space-between;
 }
 .navbar2 {
   /* width: 100%;
-  height: 40px; */
-  margin-bottom:10px;
-
-  display: flex;
-  
-  padding: 10px;
- 
- 
-}
-.alert2 {
-  color:white;
-  font-family: 'Gowun Dodum', sans-serif;
-  font-weight: bold;
-  background-color:#A3C9A8;
+height: 40px; */
   margin-bottom: 10px;
 
+  display: flex;
+
+  padding: 10px;
+}
+.alert2 {
+  color: white;
+  font-family: "Gowun Dodum", sans-serif;
+  font-weight: bold;
+  background-color: #a3c9a8;
+  margin-bottom: 10px;
 }
 .alert {
   padding: 10px;
 }
 .search {
- 
- height: 42px;
+  height: 42px;
   width: 370px;
-  border: 3px solid #84B59F;
+  border: 3px solid #84b59f;
   border-radius: 5px;
   margin-left: auto;
-  
-  
 }
 .search input {
-  font-family: 'Gowun Dodum', sans-serif;
+  font-family: "Gowun Dodum", sans-serif;
   font-weight: bold;
   font-size: 15px;
   width: 270px;
   padding: 10px;
-  border:0px;
+  border: 0px;
   outline: none;
   float: left;
 }
 .search button {
-  font-family: 'Gowun Dodum', sans-serif;
+  font-family: "Gowun Dodum", sans-serif;
   width: 70px;
-  height:100%;
+  height: 100%;
   float: right;
-    font-size:14px;
-    font-weight: bold;
-    outline:none;
-    border: 0px;
-    background-color: #84B59F; color: white; 
-
+  font-size: 14px;
+  font-weight: bold;
+  outline: none;
+  border: 0px;
+  background-color: #84b59f;
+  color: white;
 }
 .nav-nav {
-    display: inline-block;
-    vertical-align: middle;
+  display: inline-block;
+  vertical-align: middle;
 }
 .nav {
-    
-    list-style: none;
-    margin: 0px;
-    padding: 0px;
-    display: flex;
-
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
 }
 .nav-link {
-    text-decoration-line: none;
-    color: white;
-    font-family: 'Gowun Dodum', sans-serif;
-   
+  text-decoration-line: none;
+  color: white;
+  font-family: "Gowun Dodum", sans-serif;
 }
 .nav-item {
-    /* display: inline; */
-    display: block;
-    text-align: center;
-    margin: .5rem;
-    padding: .5rem 1rem;
-    text-decoration: none;
-    font-weight: bold;
-    color: white;
-    background: #A3C9A8;
+  /* display: inline; */
+  display: block;
+  text-align: center;
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+  background: #a3c9a8;
 }
 
 .nav-title {
-    display: inline-block;
-    /* vertical-align: middle; */
-    color: white;
-    font-size:x-large;
-    font-weight: bold;
-    margin: 0.5rem;
-    padding: 0;
-    
+  display: inline-block;
+  /* vertical-align: middle; */
+  color: white;
+  font-size: x-large;
+  font-weight: bold;
+  margin: 0.5rem;
+  padding: 0;
 }
 
 .book-list-item {
-    list-style: none;
-    margin: 0.5rem;
-    vertical-align: middle;
+  list-style: none;
+  margin: 0.5rem;
+  vertical-align: middle;
 }
 a.book-list-item {
-    width: fit-content;
+  width: fit-content;
 }
-.book-item { 
-    border: 2.5px solid  #E3D081;
-    display: inline-block;
-    font-size: 15px;
-    background-color:white;
-    font-family: 'Gowun Dodum', sans-serif;
-    /* width:340px;
-    #69A297
-    height: 450px; */
-    padding: 10px 10px 10px 10px;
-    box-sizing: border-box;
-    text-align: center;
+.book-item {
+  border: 2.5px solid #e3d081;
+  display: inline-block;
+  font-size: 15px;
+  background-color: white;
+  font-family: "Gowun Dodum", sans-serif;
+  /* width:340px;
+  #69A297
+  height: 450px; */
+  padding: 10px 10px 10px 10px;
+  box-sizing: border-box;
+  text-align: center;
 }
-
+.nonebook {
+  font-family: "Gowun Dodum", sans-serif;
+  font-size: 20px;
+  /* padding-left: 10px; */
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin-top: 30px;
+}
 
 .book-image {
-    width: 230px;
-    height: 280px;
-    object-fit: contain;
-    margin-bottom: 20px;
-    /* display: block; */
-    
+  width: 230px;
+  height: 280px;
+  object-fit: contain;
+  margin-bottom: 20px;
+  /* display: block; */
 }
 .plusimg {
-    display: flex;
-    flex-wrap:nowrap;
-    flex-direction: row; 
-    justify-content: space-around;
-    vertical-align: middle;
-    margin-bottom: 20px;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-around;
+  vertical-align: middle;
+  margin-bottom: 20px;
 }
 .detail-img {
-    width: 285px; height: 350px;
+  height: 350px;
 }
 .detailphoto-img {
-  width: 250px; height: auto;
+  width: 250px;
+  height: auto;
 }
- .photoupload {
+.photoupload {
   margin-bottom: 10px;
-  font-family: 'Gowun Dodum', sans-serif;
-
+  font-family: "Gowun Dodum", sans-serif;
 }
 .photoupload2 {
-  
-  font-family: 'Gowun Dodum', sans-serif;
-    font-size:16px;
-    font-weight: bold;
-    border-radius: 5px;
-    border: 1px solid #84B59F; background-color: rgba(0,0,0,0); color: #84B59F; padding: 5px;
-    line-height: normal;
-    vertical-align: middle;
+  font-family: "Gowun Dodum", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 1px solid #84b59f;
+  background-color: rgba(0, 0, 0, 0);
+  color: #84b59f;
+  padding: 5px;
+  line-height: normal;
+  vertical-align: middle;
 }
-/*
-.photoupload input[type='file']{
-  position: absolute;
-   width: 1px; 
-   height: 1px;
-    padding: 0; 
-    margin: -1px;
-      clip:rect(0,0,0,0); 
-      border: 0;
 
-} */
-
-
-body {margin: 10px;}
+body {
+  margin: 10px;
+}
 .where {
   display: block;
   margin: 25px 15px;
@@ -187,7 +174,7 @@ body {margin: 10px;}
   text-decoration: none;
   font-family: verdana;
   font-style: italic;
-} 
+}
 
 .filebox input[type="file"] {
   position: absolute;
@@ -196,13 +183,13 @@ body {margin: 10px;}
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip:rect(0,0,0,0);
+  clip: rect(0, 0, 0, 0);
   border: 0;
 }
 
 .filebox label {
   display: inline-block;
-  padding: .5em .75em;
+  padding: 0.5em 0.75em;
   color: #999;
   font-size: inherit;
   line-height: normal;
@@ -211,13 +198,13 @@ body {margin: 10px;}
   cursor: pointer;
   border: 1px solid #ebebeb;
   border-bottom-color: #e2e2e2;
-  border-radius: .25em;
+  border-radius: 0.25em;
 }
 
 /* named upload */
 .filebox .upload-name {
   display: inline-block;
-  padding: .5em .75em;
+  padding: 0.5em 0.75em;
   font-size: inherit;
   font-family: inherit;
   line-height: normal;
@@ -225,7 +212,7 @@ body {margin: 10px;}
   background-color: #f5f5f5;
   border: 1px solid #ebebeb;
   border-bottom-color: #e2e2e2;
-  border-radius: .25em;
+  border-radius: 0.25em;
   -webkit-appearance: none; /* 네이티브 외형 감추기 */
   -moz-appearance: none;
   appearance: none;
@@ -236,7 +223,7 @@ body {margin: 10px;}
   margin-bottom: 5px;
 }
 
-@media(min-width: 768px) {
+@media (min-width: 768px) {
   .filebox .upload-display {
     display: inline-block;
     margin-right: 5px;
@@ -261,191 +248,282 @@ body {margin: 10px;}
   height: auto;
 }
 
-.filebox.bs3-primary label{
-  
-  font-family: 'Gowun Dodum', sans-serif;
-    font-size:16px;
-    font-weight: bold;
-    border-radius: 5px;
-    border: 1px solid #84B59F; background-color: rgba(0,0,0,0); color: #84B59F; padding: 5px;
-
+.filebox.bs3-primary label {
+  font-family: "Gowun Dodum", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 1px solid #84b59f;
+  background-color: rgba(0, 0, 0, 0);
+  color: #84b59f;
+  padding: 5px;
 }
 
 .book_info {
-    
-    border: 2px solid  #E3D081;
-    display: inline-block;
-    font-size: 18px;
-    font-family: 'Gowun Dodum', sans-serif;
-    align-items: center;
-    
-    /* width:340px;
-    #69A297
-    height: 450px; */
-    
-    padding: 10px 10px 10px 10px;
-    box-sizing: border-box;
-    text-align:left;
+  border: 3px solid #e3d081;
+  display: inline-block;
+  font-size: 18px;
+  font-family: "Gowun Dodum", sans-serif;
+  align-items: center;
+  padding: 10px 30px 10px 30px;
+
+  /* width:340px;
+  #69A297
+  height: 450px; */
+
+  /box-sizing: border-box;
+  text-align: left;
 }
 .total-description {
-    font-family: 'Gowun Dodum', sans-serif;
-  
+  font-family: "Gowun Dodum", sans-serif;
 }
-.book-description{
-    display: flex;
-    border: 2px solid  #E3D081;
-    padding: 10px 10px 10px 10px;
-    box-sizing: border-box;
-    text-align:left;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
+.book-description {
+  display: flex;
+  border: 2px solid #e3d081;
+  padding: 10px 10px 10px 10px;
+  box-sizing: border-box;
+  text-align: left;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
 }
-.review{
-    margin-bottom: 10px;
-    font-family: 'Gowun Dodum', sans-serif;
+.review {
+  margin-bottom: 10px;
+  font-family: "Gowun Dodum", sans-serif;
+}
+.reviewinfo {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.context-date {
+  display: flex;
 }
 .write-review {
-    font-family: 'Gowun Dodum', sans-serif;
+  font-family: "Gowun Dodum", sans-serif;
 }
-.review-now{
-    font-family: 'Gowun Dodum', sans-serif;
+.review-now {
+  font-family: "Gowun Dodum", sans-serif;
+  padding-bottom: 10px;
+  margin-left: 5px;
 }
-.review-user{
-  border: 2px solid  #E3D081;
+.review-user {
+  margin-top: 1px;
+  border: 2px solid #e3d081;
   box-sizing: border-box;
+  padding-left: 10px;
 }
 .star-rating {
-    display: flex;
-    flex-direction: row-reverse;
-    font-size: 2.25rem;
-    line-height: 2rem;
-    /* justify-content: space-around; */
-    /* padding: 0 0.2em; */
-    text-align: center;
-    width: 5em;
-    margin: 0px 3%;
-    margin-left: 392px;
-  }
-   
-  .star-rating input {
-    display: none;
-    
-  }
-   
-  .star-rating label {
-    -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
-    -webkit-text-stroke-width: 2.3px;
-    -webkit-text-stroke-color: #2b2a29;
-    cursor: pointer;
-    font-size: 25px;
-    font-family: 'Jua', sans-serif;
-  }
-   
-  .star-rating :checked ~ label {
-    -webkit-text-fill-color: gold;
-  }
-   
-  .star-rating label:hover,
-  .star-rating label:hover ~ label {
-    -webkit-text-fill-color: #fff58c;
-  }
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 2.25rem;
+  line-height: 2rem;
+  /* justify-content: space-around; */
+  /* padding: 0 0.2em; */
+  text-align: center;
+  width: 5em;
+  margin: 0px 3%;
+  margin-left: 392px;
+}
 
-  .star-ratings {
-    font-family: 'Jua', sans-serif;
-    color: #aaa9a9; 
-    position: relative;
-    unicode-bidi: bidi-override;
-    width: max-content;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,40%);
-    -webkit-text-fill-color: transparent; 
-    -webkit-text-stroke-width: 1.3px;
-    -webkit-text-stroke-color: #2b2a29;
-    
-  }
-   
-  .star-ratings-fill {
-    color: #fff58c;
-    padding: 0;
-    position: absolute;
-    
-    z-index: 1;
-    display: flex;
-    
-    overflow: hidden;
-    -webkit-text-fill-color: gold;
-  }
-   
-  .star-ratings-base {
-    z-index: 0;
-    padding: 0;
-  }
-  .form-group2 label {
-    font-family: 'Gowun Dodum', sans-serif;
-    font-size: 20px;
-  }
-  .form-group label {
-    font-family: 'Gowun Dodum', sans-serif;
-    
-    font-size: 20px;
-  }
-  
-  .form-group input {
-    font-family: 'Gowun Dodum', sans-serif;
-    font-size: 20px;
-    width: 700px;
-    height: 25px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-  }
-  .btn {
-    font-family: 'Gowun Dodum', sans-serif;
-    font-size:16px;
-    font-weight: bold;
-    border-radius: 5px;
-    border: 1px solid #84B59F; background-color: rgba(0,0,0,0); color: #84B59F; padding: 5px;
+.star-rating input {
+  display: none;
+}
 
-    }
-    .btn2 {
-      font-family: 'Gowun Dodum', sans-serif;
-      font-size:16px;
-      font-weight: bold;
-      border-radius: 5px;
-      border: 1px solid #090a0a; background-color: rgba(0,0,0,0); color: #090a0a; padding: 5px;
-  
-      }
-  .star-btn {
-    width: 90%;
-    margin: 10px auto;
-    display: flex;
-  }
+.star-rating label {
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2.3px;
+  -webkit-text-stroke-color: #2b2a29;
+  cursor: pointer;
+  font-size: 25px;
+  font-family: "Jua", sans-serif;
+}
 
+.star-rating :checked ~ label {
+  -webkit-text-fill-color: gold;
+}
 
-/* .btn {font-size: 18px; white-space:nowrap; width:100%; padding:.8em 1.5em; font-family: Open Sans, Helvetica,Arial,sans-serif; line-height:18px; display: inline-block;zoom: 1; color: #fff; text-align: center; position:relative; -webkit-transition: border .25s linear, color .25s linear, background-color .25s linear; transition: border .25s linear, color .25s linear, background-color .25s linear;}
- */
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  -webkit-text-fill-color: #fff58c;
+}
 
-/*SUNFLOWER BUTTON STYLES*/		
-/* .btn.btn-sunflower{background-color: #f2c500; border-color: #f2c500; -webkit-box-shadow: 0 3px 0 #b19001; box-shadow: 0 3px 0 #b19001;}
-.btn.btn-sunflower:hover{background-color:#e3ba02;}
-.btn.btn-sunflower:active{top: 3px; outline: none; -webkit-box-shadow: none; box-shadow: none;} */
+.star-ratings {
+  font-family: "Jua", sans-serif;
+  color: #aaa9a9;
+  position: relative;
+  unicode-bidi: bidi-override;
+  width: max-content;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 40%);
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 1.3px;
+  -webkit-text-stroke-color: #2b2a29;
+}
+.star-ratings-review {
+  font-family: "Jua", sans-serif;
+  color: #aaa9a9;
+  position: relative;
+  unicode-bidi: bidi-override;
+  width: max-content;
+  /*top: 50%;
+  left: 50%;
+  transform: translate(-50%, 40%);*/
+  margin-right: 10%;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 1.3px;
+  -webkit-text-stroke-color: #2b2a29;
+}
 
+.star-ratings-fill {
+  color: #fff58c;
+  padding: 0;
+  position: absolute;
 
-	
+  z-index: 1;
+  display: flex;
 
+  overflow: hidden;
+  -webkit-text-fill-color: gold;
+}
 
-		
+.star-ratings-base {
+  z-index: 0;
+  padding: 0;
+}
+.register {
+  font-family: "Gowun Dodum", sans-serif;
+  display: block;
+  border: 3px solid #84b59f;
+  padding-top: 0px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 25px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+}
+.form-group2 label {
+  font-family: "Gowun Dodum", sans-serif;
+  font-size: 20px;
+}
+.form-group2 {
+  margin-bottom: 5px;
+}
+.form-group2 input {
+  font-family: "Gowun Dodum", sans-serif;
+  font-size: 20px;
+
+  display: flex;
+  border: 1px solid;
+  outline: none;
+  border-radius: 5px;
+  line-height: 2.5rem;
+  font-size: 1.2rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.form-group {
+  margin-bottom: 5px;
+}
+.form-group label {
+  font-family: "Gowun Dodum", sans-serif;
+
+  font-size: 20px;
+}
+
+.form-group input {
+  font-family: "Gowun Dodum", sans-serif;
+  font-size: 20px;
+
+  width: 83.4%;
+  display: flex;
+  border: 1px solid;
+  outline: none;
+  border-radius: 5px;
+  line-height: 2.5rem;
+  font-size: 1.2rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.form-control {
+  display: flex;
+  padding: 0.5em 0.75em;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: 0.25em;
+  appearance: none;
+  height: 23px;
+  /*653*/
+  width: 90%;
+}
+.btn {
+  font-family: "Gowun Dodum", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 1px solid #84b59f;
+  background-color: rgba(0, 0, 0, 0);
+  color: #84b59f;
+  padding: 5px;
+}
+.btn-withdraw {
+  margin-left: 20px;
+  font-family: "Gowun Dodum", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 1px solid #ca4949;
+  background-color: rgba(0, 0, 0, 0);
+  color: #ca4949;
+  padding: 5px;
+}
+.btn2 {
+  font-family: "Gowun Dodum", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 1px solid #090a0a;
+  background-color: rgba(0, 0, 0, 0);
+  color: #090a0a;
+  padding: 5px;
+}
+.btn3 {
+  margin-top: 10px;
+  font-family: "Gowun Dodum", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  float: right;
+  border: 1px solid #84b59f;
+  background-color: rgba(0, 0, 0, 0);
+  color: #84b59f;
+  padding: 5px;
+}
+.star-btn {
+  width: 70%;
+  margin: 10px auto;
+  display: flex;
+  justify-content: flex-end;
+}
 .container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 4fr));
-  font-family: 'Gowun Dodum', sans-serif;
+  font-family: "Gowun Dodum", sans-serif;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
   font-weight: bold;
 }
 .libraryinfo {
-  font-family: 'Gowun Dodum', sans-serif;
+  font-family: "Gowun Dodum", sans-serif;
 }
-.libraryinfo h2, h3 {
+.libraryinfo h2,
+h3 {
   font-weight: bold;
 }
