@@ -3,47 +3,45 @@
 {% block page_content %}
 
 {% if book_info %}
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-<div class="plusimg">
-    <img class="detail-img" src="../../../{{book_info.link}}">
 
+    <div class='book-detail-class'>
     <div class="book_info">
-        <p>책이름: {{ book_info.book_name }}</p>
-        <p>출판사: {{ book_info.publisher }}</p>
-        <p>저자: {{ book_info.author }}</p>
-        <p>출간일: {{ book_info.publication_date }}</p>
-        <p>페이지 수: {{ book_info.pages }}</p>
-        <p>ISBN 코드: {{ book_info.isbn }}</p>
+        <div class="plusimg">
+        <img class="detail-img" src="../../../{{book_info.link}}"></div>
+        <div class="book-info-detail">
+        <p style="font-size: 25px; font-weight: bold; margin-bottom: 5px;">{{ book_info.book_name }}</p>
+        <p style="color:#878787;font-size: 15px;margin: 0;">{{ book_info.author }}|{{ book_info.publisher }}|{{ book_info.publication_date }}</p>
+        {{ book_info.pages }}쪽 ISBN: {{ book_info.isbn }}
+        <hr style="border-left:none;border-right:none;border-top:none;border-bottom:2px solid#878787; height: 3px !important; display: block !important; width: 100% !important;"/>
     </div>
-</div>
-<hr>
-<div class="total-description">
-    <h2 style="margin-left: 5px;">책 소개</h2>
-    <div class="book-description">
-        <p>{{ book_info.description }}</p>
+
+    <div class="total-description">
+        <!--<h2 style="margin-left: 5px;">책 소개</h2>-->
+        
+        <div  class="book-description">
+            
+            <p>{{ book_info.description }}</p>
+        </div>
     </div>
-</div>
-<hr>
+    </div>
+
+<hr/>
+
 <div class="review">
     <h2 style="margin-left: 5px;">댓글</h2>
     <div class="review-now">현재 {{ review_info|length }} 개의 댓글이 있습니다.</div>
     {% for review in review_info %}
     <div class="review-user">
-        <p style="padding-left:5px;font-weight: bold;"> {{review.user_name}}</p>
+        <p style="padding-top:10px;padding-left:5px;"><span style="font-weight: bold; font-size:20px;"> {{review.user_name}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span style="font-size: 15px;">{{review.create_time}}</span></p>
         {% if (review.imagelink == none) or (review.imagelink|int == 12398978982) %}
-        <!-- {{review.imagelink}}
-        {{review.imagelink|int}} -->
         {%else%}
-        <!-- {{review.imagelink}} -->
         <img style="margin-left: 5px; margin-bottom: 5px;" class="detailphoto-img" src="../../../static/uploads/{{review.imagelink}}">
         {%endif%}
         <div class="reviewinfo">
-            <!-- <span>
-                {{ review.rating }}</span>    -->
-            <div class="context-date">
-            <div style="margin-left:5px; margin-right: 20px;">  {{ review.content }}</div> 
-            <div> {{review.create_time}}</div> 
-            </div>
+            <div style="margin-left:5px; font-size: 18px;">  {{ review.content }}</div> 
+        </div>
+        <div class="star-review">
             <div class="star-ratings-review">
                 <div class="star-ratings-fill space-x-2 text-lg" style="width:{{review.rating*20+1.5}}%">
                     <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
@@ -51,28 +49,27 @@
                 <div class="star-ratings-base space-x-2 text-lg">
                     <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                 </div>
+                
             </div>
-        </div>
-
-        {% if session['email'] == review.user_id %}
-        <!--bookReview에 user_id 추가해주기!!!!!!-->
-        {% set photolink = review.imagelink %}
-        {%if review.imagelink == none %}
-        {% set photolink = 12398978982 %}
-        {%endif%}
-        <!-- {{photolink}} -->
-        <div id="modi">
-            <a class="btn" style="margin-right: 5px;"
-                href="{{ url_for('detail.modify_review', book_id=book_info.id, review_id=review.id,photolink=photolink)}}#modiphoto">수정</a>
-            <a class="btn"
-                href="{{ url_for('detail.delete_review', book_id=book_info.id, review_id=review.id)}}">삭제</a>
-        </div>
-        {%endif%}
-        </p>
+            {% if session['email'] == review.user_id %}
+            <!--bookReview에 user_id 추가해주기!!!!!!-->
+                {% set photolink = review.imagelink %}
+                {%if review.imagelink == none %}
+                {% set photolink = 12398978982 %}
+                {%endif%}
+            <!-- {{photolink}} -->
+                <div class="review-button" id="modi">
+                    <a class="btn" style="margin-right: 5px;"
+                        href="{{ url_for('detail.modify_review', book_id=book_info.id, review_id=review.id,photolink=photolink)}}#modiphoto">수정</a>
+                    <a class="btn"
+                        href="{{ url_for('detail.delete_review', book_id=book_info.id, review_id=review.id)}}">삭제</a>
+                </div>
+                {%endif%}
+        </div>     
     </div>
     {% endfor %}
 </div>
-<hr>
+<hr/>
 <div class="write-review">
     {% if session['email'] %}
     <h2 style="margin-left: 5px;">댓글 작성</h2>
@@ -112,11 +109,12 @@
                 <input type="radio" id="1-star" name="rating" value="1" v-model="ratings" />
                 <label for="1-star" class="star">★</label>
             </div>
-            <input class="btn btn-primary" type="submit" value="작성하기">
+            <input class="btn" type="submit" value="작성하기">
         </div>
     </form>
 
     {% endif %}
+</div>
 </div>
 {% endif %}
 {% endblock %}

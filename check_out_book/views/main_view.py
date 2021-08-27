@@ -11,10 +11,12 @@ bp = Blueprint('main', __name__, url_prefix='/')
 
 @bp.route('/')
 def home():
+    page = request.args.get('page', type=int, default=1)
     book_list = Book.query.order_by(Book.id.asc())
+    book_list = book_list.paginate(page, per_page=8)
 
     if '_flashes' in session:
-        return render_template('Main.html', book_list=book_list)
+        return render_template('Main.html', book_list=book_list, page=page)
 
     if 'email' in session:
         rentbook_list = CheckOutBook.query.filter_by(
@@ -32,8 +34,8 @@ def home():
             if leftover.days < 0:  # 원래는 leftover.days<0: 확인위해 바꿈
                 flash(rentbook.book_name+"의 반납 기간이 지났습니다. 도서관으로 방문해서 반납해주세요!")
 
-        return render_template('Main.html', book_list=book_list, rentbook_list=rentbook_list)
-    return render_template('Main.html', book_list=book_list)
+        return render_template('Main.html', book_list=book_list, rentbook_list=rentbook_list, page=page)
+    return render_template('Main.html', book_list=book_list, page=page)
 
 
 @bp.route('/check_out/<int:book_id>', methods=('POST',))
@@ -106,7 +108,8 @@ def check_check_out(book_id):
         db.session.add(check_out)
         db.session.commit()
         flash("정상 처리되었습니다.")
-        return redirect("/../../"+"#"+str(book_id))
+        return redirect(url_for('main.home'))
+        # return redirect("/../../"+"#"+str(book_id))
 
     return redirect(url_for('main.home'))
 # 만들어 놓긴 하는데 좋은 기능은 아닌것같다
@@ -160,9 +163,10 @@ def searchbook():
     print(book_name)
     search = "%{}%".format(book_name)
     print(search)
-    searchbooklist = Book.query.filter(Book.book_name.like(search)).all()
+    searchbook_list = Book.query.filter(
+        Book.book_name.like(search)).order_by(Book.id.asc())
 
-    return render_template('SearchBookDetail.html', searchbooklist=searchbooklist)
+    return render_template('SearchBook.html', searchbook_list=searchbook_list)
 # 회원탈퇴 - 대여기록, 댓글 모두 삭제
 # 댓글 작성 - 이미지... 첨부 파일.......... 불러올 때는.....
 # 예약하기 - 반납을 하면 바로 넘어가게

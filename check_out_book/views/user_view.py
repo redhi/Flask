@@ -39,7 +39,7 @@ def register():
             correctpw = reg2.match(request.form['password'])
 
             if correctpw is None:
-                flash("비밀번호는 영문자, 숫자, 특수문자가 각각 한 개 이상이여야 합니다.")
+                flash("비밀번호는 영문자, 숫자, 특수문자가 각각 한 개 이상, 총 8자리 이상이여야 합니다.")
                 return redirect(url_for('user.register'))
 
             password = hashpw(

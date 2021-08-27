@@ -1,13 +1,10 @@
 {%extends "BaseSearch.html"%}
 {%block title%}찾는 책 페이지{%endblock%}
 {%block page_content%}
-{% if searchbooklist %}
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{% if searchbook_list %}
+
 <div class="container">
-    <!-- <div class='row'>
-        <div class="col-12">
-            <ul class="list-group"> -->
-    {% for book in searchbooklist%}
+    {% for book in searchbook_list%}
     <div class="book-item">
         <a style="text-decoration-line: none; color:black;" href="/detail/book/{{ book.id }}/12398978982">
             <!--a href를 목록밖으로 빼면 전체 바 눌러도 인식-->
@@ -24,10 +21,15 @@
         </div>
         <p>별점: {{book.rating}}점</p>
         <p>{{book.stock}}권 남음</p>
-
+        {%if book.stock == 0%}
+        <form action="/reservation/{{ book.id }}" method="post">
+            <input class="btn2 btn-primary" type="submit" value="예약하기">
+        </form>
+        {%else%}
         <form action="/check_out/{{ book.id }}" method="post">
             <input class="btn btn-primary" type="submit" value="대여하기">
         </form>
+        {%endif%}
         </li>
     </div>
 
@@ -35,9 +37,7 @@
 
 
     {% endfor %}
-    <!-- </ul>
-        </div>
-    </div> -->
+   
 </div>
 {% else %}
 <p class="nonebook"><i class="fas fa-book-open"></i> &nbsp;&nbsp;찾는 책이 없습니다. &nbsp;&nbsp;<i class="fas fa-book-open"></i></p>

@@ -1,13 +1,13 @@
 {% extends "Base.html" %}
 {% block page_content %}
 <div class="libraryinfo">
-    <h2 style="padding-left: 5px;">이용안내</h2>
+    <p style="font-size:35px;font-weight:bold;padding-left: 5px;">이용안내</p>
 
-    <h3 style="padding-left: 5px;"><i class="fas fa-book"></i> 대출</h3>
-    <h4 style="padding-left: 5px;"><i class="fas fa-book-open"></i> 대출 기간</h4>
+    <p style="font-size:25px; font-weight:bold;padding-left: 5px;"><i class="fas fa-book"></i> 대출</p>
+    <p style="font-size:20px; font-weight:bold; padding-left: 5px;"><i class="fas fa-book-open"></i> 대출 기간</p>
     <p style="padding-left: 10px;"> 1인 5권 2주일간</p>
 
-    <h3 style="padding-left: 5px;"><i class="fas fa-book"></i> 대출예약</h3>
+    <p style="font-size:25px; font-weight:bold;padding-left: 5px;"><i class="fas fa-book"></i> 대출예약</h3>
     <p style="padding-left: 10px;" >재고가 0권이면 예약하기 버튼이 생깁니다.</p>
     <p style="padding-left: 10px;">예약하기 버튼을 누르고 마이페이지에 가면 예약기록을 볼 수 있습니다.</p>
     <p style="padding-left: 10px;">해당 책을 다른 사용자가 반납하면 자동으로 대기순번 1번이 대여할 수 있습니다.</p>
@@ -15,20 +15,20 @@
     <p style="padding-left: 10px;">단, 위의 상황으로 대기 순번이 혼자 남았어도 대출이 되지 않습니다.</p>
     
 
-    <h3 style="padding-left: 5px;"><i class="fas fa-book"></i> 반납</h3>
+    <p style="font-size:25px; font-weight:bold;padding-left: 5px;"><i class="fas fa-book"></i> 반납</h3>
     <p style="padding-left: 10px;"> 기간 내 반납하기 탭에 반납하기 버튼을 이용</p>
     <p style="padding-left: 10px;"> 기간이 지나면 온라인으로 반납이 불가합니다. 도서관에 방문해서 반납해야 합니다.</p>
 
-    <h4 style="padding-left: 5px;"><i class="fas fa-book-open"></i> 연체반납</h4>
+    <p style="font-size:20px; font-weight:bold; padding-left: 5px;"><i class="fas fa-book-open"></i> 연체반납</p>
     <p style="padding-left: 10px;"> 반납예정일을 지나 반납하였을 경우 반납일 이후 연체된 일수만큼 대출정지됩니다.</p>
     <p style="padding-left: 10px;"> 예) 4권 2일 연체 시 → 4권×2일 = 8일 대출정지 발생</p>
     <p style="padding-left: 10px;"> 예) 3권 2일, 1일, 5일 연체 시 → 3권×8일 = 21일 대출정지 발생</p>
-    <h4 style="padding-left: 5px;"><i class="fas fa-book-open"></i> 도서변상</h4>
+    <p style="font-size:20px; font-weight:bold; padding-left: 5px;"><i class="fas fa-book-open"></i> 도서변상</p>
     <p style="padding-left: 10px;"> 대출자료 분실·훼손 시 동일자료로 변상함이 원칙이며, 절판 등의 사유로 동일자료 변상이 어려운 경우 시가로 변상해야 합니다.</p>
     <hr>
     <h2 style="padding-left: 5px;">찾아오시는 길</h2>
 </div>
-<div id="map" style="height:400px"></div>
+<div id="map" style="height:400px; position: relative; left:15%; width: 1060px;"></div>
 <script type="text/javascript"
     src="//dapi.kakao.com/v2/maps/sdk.js?appkey=28cfff31d17f98bc1e1a1182b2f87eca&libraries=services"></script>
 <script>

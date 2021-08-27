@@ -1,20 +1,13 @@
 .navbar {
-  /* width: 100%;
-  height: 40px; */
   margin-bottom: 10px;
-
   display: flex;
   background: #84b59f;
   padding: 20px;
   justify-content: space-between;
 }
 .navbar2 {
-  /* width: 100%;
-height: 40px; */
   margin-bottom: 10px;
-
   display: flex;
-
   padding: 10px;
 }
 .alert2 {
@@ -28,7 +21,7 @@ height: 40px; */
   padding: 10px;
 }
 .search {
-  height: 42px;
+  height: 50px;
   width: 370px;
   border: 3px solid #84b59f;
   border-radius: 5px;
@@ -71,8 +64,10 @@ height: 40px; */
   color: white;
   font-family: "Gowun Dodum", sans-serif;
 }
+a:hover {
+  color: green;
+}
 .nav-item {
-  /* display: inline; */
   display: block;
   text-align: center;
   margin: 0.5rem;
@@ -107,9 +102,6 @@ a.book-list-item {
   font-size: 15px;
   background-color: white;
   font-family: "Gowun Dodum", sans-serif;
-  /* width:340px;
-  #69A297
-  height: 450px; */
   padding: 10px 10px 10px 10px;
   box-sizing: border-box;
   text-align: center;
@@ -117,7 +109,6 @@ a.book-list-item {
 .nonebook {
   font-family: "Gowun Dodum", sans-serif;
   font-size: 20px;
-  /* padding-left: 10px; */
   display: flex;
   justify-content: center;
   align-items: baseline;
@@ -132,12 +123,11 @@ a.book-list-item {
   /* display: block; */
 }
 .plusimg {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  justify-content: space-around;
+  display: grid;
+  margin-right: 20px;
+  grid-row-start: 1;
+  grid-row-end: 3;
   vertical-align: middle;
-  margin-bottom: 20px;
 }
 .detail-img {
   height: 350px;
@@ -257,34 +247,42 @@ body {
   background-color: rgba(0, 0, 0, 0);
   color: #84b59f;
   padding: 5px;
+  margin-bottom: 0;
 }
-
+.book-detail-class {
+  width: 1060px;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+}
 .book_info {
-  border: 3px solid #e3d081;
-  display: inline-block;
+  /*border: 3px solid #e3d081;*/
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
   font-size: 18px;
   font-family: "Gowun Dodum", sans-serif;
   align-items: center;
-  padding: 10px 30px 10px 30px;
-
-  /* width:340px;
-  #69A297
-  height: 450px; */
-
-  /box-sizing: border-box;
+  padding: 10px 20px 10px 10px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
   text-align: left;
 }
+.book-info-detail {
+  display: grid;
+  grid-column-start: 2;
+  grid-column-end: 4;
+
+  flex-direction: column;
+}
 .total-description {
+  display: grid;
+  grid-column-start: 2;
+  grid-column-end: 4;
   font-family: "Gowun Dodum", sans-serif;
 }
 .book-description {
-  display: flex;
-  border: 2px solid #e3d081;
-  padding: 10px 10px 10px 10px;
-  box-sizing: border-box;
-  text-align: left;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
+  display: grid;
 }
 .review {
   margin-bottom: 10px;
@@ -293,7 +291,11 @@ body {
 .reviewinfo {
   margin-bottom: 10px;
   display: flex;
-  justify-content: space-between;
+}
+.review-button {
+  display: flex;
+  margin-right: 30px;
+  justify-content: flex-end;
 }
 .context-date {
   display: flex;
@@ -360,16 +362,22 @@ body {
   -webkit-text-stroke-width: 1.3px;
   -webkit-text-stroke-color: #2b2a29;
 }
+.star-review {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
 .star-ratings-review {
   font-family: "Jua", sans-serif;
+  font-size: 20px;
   color: #aaa9a9;
   position: relative;
   unicode-bidi: bidi-override;
   width: max-content;
-  /*top: 50%;
-  left: 50%;
-  transform: translate(-50%, 40%);*/
-  margin-right: 10%;
+  margin-right: 30px;
+  float: right;
+  margin-bottom: 10px;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 1.3px;
   -webkit-text-stroke-color: #2b2a29;
@@ -395,14 +403,14 @@ body {
   font-family: "Gowun Dodum", sans-serif;
   display: block;
   border: 3px solid #84b59f;
-  padding-top: 0px;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-top: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
   padding-bottom: 25px;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -40%);
+  transform: translate(-50%, -35%);
 }
 .form-group2 label {
   font-family: "Gowun Dodum", sans-serif;
@@ -437,7 +445,7 @@ body {
 .form-group input {
   font-family: "Gowun Dodum", sans-serif;
   font-size: 20px;
-
+  height: 33px;
   width: 83.4%;
   display: flex;
   border: 1px solid;
@@ -448,20 +456,19 @@ body {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
-.form-control {
+.form-group2 input {
+  font-family: "Gowun Dodum", sans-serif;
+  font-size: 20px;
+  height: 33px;
+  width: 100%;
   display: flex;
-  padding: 0.5em 0.75em;
-  font-size: inherit;
-  font-family: inherit;
-  line-height: normal;
-  vertical-align: middle;
-  border: 1px solid #ebebeb;
-  border-bottom-color: #e2e2e2;
-  border-radius: 0.25em;
-  appearance: none;
-  height: 23px;
-  /*653*/
-  width: 90%;
+  border: 1px solid;
+  outline: none;
+  border-radius: 5px;
+  line-height: 2.5rem;
+  font-size: 1.2rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 .btn {
   font-family: "Gowun Dodum", sans-serif;
@@ -472,6 +479,9 @@ body {
   background-color: rgba(0, 0, 0, 0);
   color: #84b59f;
   padding: 5px;
+}
+.btn btn-primary {
+  background-color: #6cb896;
 }
 .btn-withdraw {
   margin-left: 20px;
@@ -514,7 +524,10 @@ body {
 }
 .container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 4fr));
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(200px, auto);
+  grid-row-gap: 20px;
+
   font-family: "Gowun Dodum", sans-serif;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
@@ -522,8 +535,27 @@ body {
 }
 .libraryinfo {
   font-family: "Gowun Dodum", sans-serif;
+
+  width: 1060px;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
 }
 .libraryinfo h2,
 h3 {
   font-weight: bold;
+}
+.pagination {
+  margin-top: 20px;
+  font-family: "Gowun Dodum", sans-serif;
+}
+.page-item active {
+  background-color: #a3c9a8;
+}
+.page-item.active .page-link {
+  background-color: #a3c9a8;
+  border: #a3c9a8;
+}
+.page-link {
+  color: #84b59f;
 }

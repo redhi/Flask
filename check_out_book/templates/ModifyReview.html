@@ -3,26 +3,26 @@
 {% block page_content %}
 
 {% if book_info %}
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-<div class="plusimg">
-    <img class="detail-img" src="../../../../{{book_info.link}}">
-
+<div class='book-detail-class'>
     <div class="book_info">
-        <p>책이름: {{ book_info.book_name }}</p>
-        <p>출판사: {{ book_info.publisher }}</p>
-        <p>저자: {{ book_info.author }}</p>
-        <p>출간일: {{ book_info.publication_date }}</p>
-        <p>페이지 수: {{ book_info.pages }}</p>
-        <p>ISBN 코드: {{ book_info.isbn }}</p>
+        <div class="plusimg">
+        <img class="detail-img" src="../../../../{{book_info.link}}"></div>
+        <div class="book-info-detail">
+        <p style="font-size: 25px; font-weight: bold; margin-bottom: 5px;">{{ book_info.book_name }}</p>
+        <p style="color:#878787;font-size: 15px;margin: 0;">{{ book_info.author }}|{{ book_info.publisher }}|{{ book_info.publication_date }}</p>
+        {{ book_info.pages }}쪽 ISBN: {{ book_info.isbn }}
+        <hr style="border-left:none;border-right:none;border-top:none;border-bottom:2px solid#878787; height: 3px !important; display: block !important; width: 100% !important;"/>
     </div>
-</div>
-<hr>
-<div class="total-description">
-    <h2>책 소개</h2>
-    <div class="book-description">
-        <p>{{ book_info.description }}</p>
+
+    <div class="total-description">
+        <!--<h2 style="margin-left: 5px;">책 소개</h2>-->
+        
+        <div  class="book-description">
+            
+            <p>{{ book_info.description }}</p>
+        </div>
     </div>
-</div>
+    </div>
 <hr>
 <div class="review">
     <h2>댓글</h2>
@@ -55,7 +55,7 @@
         action="{{ url_for('detail.modify_review2',book_id=book_id, review_id=review_id,nowrate=nowrate, ratenum=ratenum,photolink=photolink)  }}"
         method="post">
         <div class="form-group">
-            <input class="form-control" name="review" id="review" placeholder="{{book.content}}"></input>
+            <input class="form-control" name="review" id="review" value="{{book.content}}"></input>
         </div>
         <div class="star-btn">
             <div class="star-rating">
@@ -70,7 +70,7 @@
                 <input type="radio" id="1-star" name="rating" value="1" v-model="ratings" />
                 <label for="1-star" class="star">★</label>
             </div>
-            <input class="btn btn-primary" type="submit" value="작성하기">
+            <input class="btn" type="submit" value="작성하기">
         </div>
     </form>
     {%else%}
@@ -94,9 +94,9 @@
         {% set photolink = 12398978982 %}
         {%endif%}
         <!--bookReview에 user_id 추가해주기!!!!!!-->
-        <a class="btn btn-danger btn-sm"
+        <a class="btn"
             href="{{ url_for('detail.modify_review', book_id=book_info.id, review_id=review.id,photolink=photolink)}}#modiphoto">수정</a>
-        <a class="btn btn-danger btn-sm"
+        <a class="btn"
             href="{{ url_for('detail.delete_review', book_id=book_info.id, review_id=review.id)}}">삭제</a>
 
         {%endif%}
@@ -147,7 +147,7 @@
                 <input type="radio" id="1-star" name="rating" value="1" v-model="ratings" />
                 <label for="1-star" class="star">★</label>
             </div>
-            <input class="btn btn-primary" type="submit" value="작성하기">
+            <input class="btn" type="submit" value="작성하기">
         </div>
     </form>
     {% endif %}

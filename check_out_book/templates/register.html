@@ -1,7 +1,6 @@
 {%extends "Base.html"%}
 
 {%block page_content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <form action="{{ url_for('user.register') }}" method="post">
 <div class="register">
     <h2>회원가입</h2>
@@ -22,7 +21,7 @@
         <input class="form-control" id="name" name="name" placeholder="이름">
     </div>
 
-    <input class="btn3 btn-primary" id="submit" type="submit" value="회원가입">
+    <input class="btn3 btn-success" id="submit" type="submit" value="회원가입">
 </div>
 </form>
 
