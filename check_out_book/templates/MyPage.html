@@ -1,12 +1,11 @@
 {% extends "Base.html" %}
+{%block title%}마이페이지{%endblock%}
 {% block page_content %}
 <div class="libraryinfo">
     <p style="font-size:35px;font-weight:bold;padding-left: 5px;">마이페이지</p>
     {% if reservationbook_list %}
     <p style="margin-bottom:20px;font-size:25px;font-weight:bold;padding-left: 5px;"><i class="fas fa-book"></i> 예약기록</p>
-
-<div class="container">
-    
+    <div class="container">
     {% for book in reservationbook_list%}
     <div id={{book.book_id}} class="book-item">  
         <a style="text-decoration-line: none; color:black;" href="/detail/book/{{ book.book_id }}/12398978982">
@@ -15,14 +14,9 @@
         </a>
         <p>예약날짜: {{book.create_time}}</p>
         <p>대기순번: {{book.book_num}}번</p>
-            
-            
             </li>
     </div>
-
-
-    {% endfor %}
-    
+    {% endfor %}   
 </div>
 {% else %}
 <p class="nonebook"><i class="fas fa-book-open"></i>&nbsp;&nbsp;예약한 책이 없습니다.&nbsp;&nbsp;<i class="fas fa-book-open"></i></p>
@@ -30,13 +24,9 @@
 {% endif %}
 <p style="padding-top:20px;font-size:25px;font-weight:bold;padding-left: 5px;"><i class="fas fa-book"></i> 탈퇴하기</p>
 <p style="padding-left: 20px;">- 탈퇴(계정삭제)하시려면 아래의  버튼을 눌러주세요.</p>
-    <form action="{{ url_for('user.withdraw') }}" method="post">
-
+    <form action="{{ url_for('mypage.withdraw') }}" method="post">
         <input class="btn-withdraw" type="submit" value="탈퇴">
-
-
     </form>
-
 </div>
 
 {%endblock%}

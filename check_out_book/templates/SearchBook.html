@@ -23,21 +23,16 @@
         <p>{{book.stock}}권 남음</p>
         {%if book.stock == 0%}
         <form action="/reservation/{{ book.id }}" method="post">
-            <input class="btn2 btn-primary" type="submit" value="예약하기">
+            <input class="btn2 btn-secondary" type="submit" value="예약하기">
         </form>
         {%else%}
         <form action="/check_out/{{ book.id }}" method="post">
-            <input class="btn btn-primary" type="submit" value="대여하기">
+            <input class="btn btn-success" type="submit" value="대여하기">
         </form>
         {%endif%}
         </li>
     </div>
-
-
-
-
     {% endfor %}
-   
 </div>
 {% else %}
 <p class="nonebook"><i class="fas fa-book-open"></i> &nbsp;&nbsp;찾는 책이 없습니다. &nbsp;&nbsp;<i class="fas fa-book-open"></i></p>

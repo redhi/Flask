@@ -22,28 +22,26 @@
 
 <body>
 
-    <!-- 부트스트랩 내비게이션 포함 -->
     {% include "_navbar.html" %}
     {% include "Search.html" %}
-
     {% block content %}
-
-    <div class="container2">
-        <!-- 각 페이지의 내용이 들어감 -->
-        
-            {%for message in get_flashed_messages() %}
-            
-            <div class="alert2">
-            <div class="alert">
-
-                {{message}}
-                
+    <div class="container2">  
+            {%for message in get_flashed_messages() %}      
+            {%if message=="탈퇴되었습니다."%}
+            <div class="alert-withdraw">
+                <div class="alert">
+                    {{message}}
+                </div>
             </div>
+            {%else%}
+            <div class="alert2">
+                <div class="alert">
+                    {{message}}
+                </div>
+            </div>
+            {%endif%}
             {%endfor%}
-        </div>
-
         {% block page_content %}
-
         {% endblock %}
     </div>
     {% endblock %}

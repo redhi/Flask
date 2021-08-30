@@ -16,10 +16,7 @@
     </div>
 
     <div class="total-description">
-        <!--<h2 style="margin-left: 5px;">책 소개</h2>-->
-        
         <div  class="book-description">
-            
             <p>{{ book_info.description }}</p>
         </div>
     </div>
@@ -57,7 +54,6 @@
                 {%if review.imagelink == none %}
                 {% set photolink = 12398978982 %}
                 {%endif%}
-            <!-- {{photolink}} -->
                 <div class="review-button" id="modi">
                     <a class="btn" style="margin-right: 5px;"
                         href="{{ url_for('detail.modify_review', book_id=book_info.id, review_id=review.id,photolink=photolink)}}#modiphoto">수정</a>
@@ -73,8 +69,6 @@
 <div class="write-review">
     {% if session['email'] %}
     <h2 style="margin-left: 5px;">댓글 작성</h2>
-    <!--아래도 id를 user_id로!!!!!!!!!-->
-
     <div id="photo" class="photoupload">
         <form action="{{ url_for('detail.upload_file',book_id=book_info.id) }}" method="post"
             enctype="multipart/form-data">
@@ -84,7 +78,6 @@
                 <input type="file" name='file' id="input_file" class="upload-hidden">
                 <input class="photoupload2" type="submit" value="제출">
             </div>
-
         </form>
         {% if (photolink == none) or (photolink|int == 12398978982) %}
         {%else%}
@@ -93,7 +86,6 @@
     </div>
     <form action="{{ url_for('detail.create_review', book_id=book_info.id, photolink=photolink) }}" method="post">
         <div class="form-group">
-            <!-- <label for="review">댓글</label> -->
             <input class="form-control" name="review" id="review" placeholder="댓글을 작성해주세요."></input>
         </div>
         <div class="star-btn">

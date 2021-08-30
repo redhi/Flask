@@ -104,13 +104,3 @@ class BookReview(db.Model):
     content = db.Column(db.Text())
     create_time = db.Column(db.Date)
     imagelink = db.Column(db.String(225))
-
-    # def __init__(self, id, book_id, user_name, user_id, rating, content, create_time):
-    #    now = datetime.datetime.now()
-    #    self.id = id
-    #    self.book_id = book_id
-    #    self.user_name = user_name
-    #    self.user_id = user_id
-    #    self.rating = rating
-    #    self.content = content
-    #    self.create_time = datetime.date(now.year,now.month,now.day)

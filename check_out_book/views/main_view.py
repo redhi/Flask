@@ -8,6 +8,8 @@ from dateutil.relativedelta import relativedelta
 
 bp = Blueprint('main', __name__, url_prefix='/')
 
+# 최초 로딩 페이지, 메인 페이지(책목록)
+
 
 @bp.route('/')
 def home():
@@ -27,15 +29,17 @@ def home():
             datenow = datetime.date(now.year, now.month, now.day)
             leftover = rentbook.end_date - datenow
 
-            if 0 <= leftover.days <= 3:  # 일단 확인하기 위해 대출기한 전체로 잡음 3일내로 들어왔을 때
+            if 0 <= leftover.days <= 3:  # 반납 기간이 3일내로 들어왔을 때
                 flash(rentbook.book_name+"의 반납 기간이 " +
                       str(leftover.days)+"일 남았습니다")
 
-            if leftover.days < 0:  # 원래는 leftover.days<0: 확인위해 바꿈
+            if leftover.days < 0:  # 반납 기한 지나면
                 flash(rentbook.book_name+"의 반납 기간이 지났습니다. 도서관으로 방문해서 반납해주세요!")
 
         return render_template('Main.html', book_list=book_list, rentbook_list=rentbook_list, page=page)
     return render_template('Main.html', book_list=book_list, page=page)
+
+# 대여하기
 
 
 @bp.route('/check_out/<int:book_id>', methods=('POST',))
@@ -86,9 +90,12 @@ def check_check_out(book_id):
             flash("연체반납이 일어나 "+str(finalstopdate) +
                   "일만큼 대출정지가 발생했습니다. 도서관 이용안내를 참고해주세요!")
             return redirect(url_for('main.home'))
+        
+        
+        # 예약된 책이 있나 확인하고 없으면 예약(1번째 혼자 남았는데 연체나 권수를 초과하여 대기순번이 밀려 재고가 남았을 때)
+        # 예약된 책이 있으면 - 만약 대출정지나 권수 초과로 대기순번 넘어가 있다가 나중에 빌릴때
         reservationbook = ReservationBook.query.filter_by(
             user_id=session['email'], book_id=book_id).first()
-        # 예약된 책이 있으면 - 만약 대출정지나 권수 초과로 대기순번 넘어가 있다가 나중에 빌릴때
         print("예약된 책있냐!!!")
         print(reservationbook)
         if reservationbook is not None:
@@ -112,9 +119,8 @@ def check_check_out(book_id):
         # return redirect("/../../"+"#"+str(book_id))
 
     return redirect(url_for('main.home'))
-# 만들어 놓긴 하는데 좋은 기능은 아닌것같다
 
-
+# 예약하기
 @bp.route('/reservation/<int:book_id>', methods=('POST',))
 def reservation(book_id):
     now = datetime.datetime.now()
@@ -144,6 +150,7 @@ def reservation(book_id):
         if reservationbooknum > 1:  # 최대 2권 예약할 수 있다고 가정
             flash("예약할 수 있는 권수를 초과하였습니다")
             return redirect(url_for('main.home'))
+
         booknum = ReservationBook.query.filter_by(book_id=book_id).count()
         booknum += 1
         reservationbook = ReservationBook(book_id=book_id, book_name=book.book_name,
@@ -156,7 +163,7 @@ def reservation(book_id):
 
     return redirect(url_for('main.home'))
 
-
+# 검색
 @bp.route('/search', methods=('POST',))
 def searchbook():
     book_name = request.form['keyword']
@@ -167,7 +174,3 @@ def searchbook():
         Book.book_name.like(search)).order_by(Book.id.asc())
 
     return render_template('SearchBook.html', searchbook_list=searchbook_list)
-# 회원탈퇴 - 대여기록, 댓글 모두 삭제
-# 댓글 작성 - 이미지... 첨부 파일.......... 불러올 때는.....
-# 예약하기 - 반납을 하면 바로 넘어가게
-# 발표할 때 로직위주로

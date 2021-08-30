@@ -4,14 +4,9 @@
 
 {% if totalrentbook_list %}
 <div class="container">
-    <!-- <div class='row'>
-        <div class="col-12">
-            <ul class="list-group"> -->
     {% for book in totalrentbook_list%}
     <div class="book-item">
-        <!--a href를 목록밖으로 빼면 전체 바 눌러도 인식-->
         <a style="text-decoration-line: none; color:black;" href="/detail/book/{{ book.book_id }}/12398978982">
-            <!--a href를 목록밖으로 빼면 전체 바 눌러도 인식-->
             <img class="book-image" src=../../{{book.book_link}}>
             <li class="book-list-item">{{ book.book_name }}
         </a>
@@ -25,15 +20,9 @@
         </div>
         <p>별점: {{book.rating}}점</p>
         <p>대여기간: {{book.start_date}}~{{book.end_date}}</p>
-
         </li>
-
     </div>
-
     {% endfor %}
-    <!-- </ul>
-        </div>
-    </div> -->
 </div>
 {% else %} 
 <p class="nonebook"><i class="fas fa-book-open"></i>&nbsp;&nbsp;그동안 대여한 책이 없습니다.&nbsp;&nbsp;<i class="fas fa-book-open"></i></p>

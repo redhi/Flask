@@ -6,12 +6,12 @@ from bcrypt import hashpw, checkpw, gensalt
 
 bp = Blueprint('user', __name__, url_prefix='/')
 
-
+# 회원가입 폼
 @bp.route('/register')
 def join():
     return render_template('Register.html')
 
-
+# 회원가입 처리
 @bp.route('/register', methods=('POST',))
 def register():
     if request.method == 'POST':
@@ -56,12 +56,12 @@ def register():
 
     return redirect(url_for('user.register'))
 
-
+# 로그인 폼
 @bp.route('/login', methods=('GET',))
 def login_try():
     return render_template('Login.html')
 
-
+# 로그인 처리
 @bp.route('/login', methods=('POST',))
 def login():
     email = request.form['email']
@@ -79,78 +79,15 @@ def login():
     if len(request.form['password']) < 7:
         flash("비밀번호는 최소 8자리 이상 입력해야 합니다.")
         return redirect(url_for('user.login_try'))
+
     session.clear()
     session['email'] = email
     session['name'] = user_data.name
     flash("안녕하세요, {}님!".format(user_data.name))
     return redirect(url_for('main.home'))
 
-
+# 로그아웃 처리
 @bp.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('main.home'))
-
-
-@bp.route('/withdraw')
-def withdraw_try():
-    return render_template('Withdraw.html')
-
-
-@bp.route('/withdraw', methods=('POST',))
-def withdraw():
-    user_review = BookReview.query.filter_by(
-        user_id=session['email']).order_by(BookReview.book_id.asc()).all()
-    print(user_review)
-    for review in user_review:
-        print(review.book_id)
-        rate = Book.query.filter_by(id=review.book_id).first()
-        ratenum = BookReview.query.filter_by(book_id=review.book_id).count()
-        nowrate = rate.rating*ratenum-review.rating
-        print(review.rating)
-
-        if ratenum == 1:
-            rate.rating = 0
-        else:
-            rate.rating = round(nowrate/(ratenum-1), 1)
-        print(rate.rating)
-        CheckOutBook.query.filter_by(book_id=review.book_id).update({
-            'rating': rate.rating})
-        TotalCheckOutBook.query.filter_by(
-            book_id=review.book_id).update({'rating': rate.rating})
-        print(rate)
-
-        db.session.delete(review)
-        db.session.commit()
-
-    user_checkout = CheckOutBook.query.filter_by(
-        user_id=session['email']).all()
-    if user_checkout != []:
-        for user in user_checkout:
-            findbook = Book.query.filter_by(id=user.book_id).first()
-            findbook.stock += 1
-            db.session.commit()
-            db.session.delete(user)
-            db.session.commit()
-            print(user)
-    user_reversation = ReservationBook.query.filter_by(
-        user_id=session['email']).all()
-    if user_reversation != []:
-        for user in user_checkout:
-            db.session.delete(user)
-            db.session.commit()
-            print(user)
-    user_totalcheckout = TotalCheckOutBook.query.filter_by(
-        user_id=session['email']).all()
-    if user_totalcheckout != []:
-        for user in user_checkout:
-            db.session.delete(user)
-            db.session.commit()
-            print(user)
-    user = LibraryUser.query.filter_by(email=session['email']).first()  # 조건 체크
-
-    db.session.delete(user)
-    db.session.commit()
-    session.clear()
-    flash("탈퇴되었습니다")
     return redirect(url_for('main.home'))

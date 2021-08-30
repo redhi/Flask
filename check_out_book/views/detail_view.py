@@ -1,13 +1,13 @@
 import datetime
-import urllib.parse
 from flask import Blueprint, render_template, request, url_for, session, flash
 from check_out_book.models import *
-from werkzeug.utils import redirect, secure_filename
+from werkzeug.utils import redirect
 from dateutil.relativedelta import relativedelta
 
 bp = Blueprint('detail', __name__, url_prefix='/detail')
 
 
+# 해당하는 책 상세조회
 @bp.route('/book/<int:book_id>/<string:photolink>')
 def book_detail(book_id, photolink):
     print(book_id)
@@ -19,6 +19,7 @@ def book_detail(book_id, photolink):
     return render_template('BookDetail.html', book_info=book_info, review_info=bookreview, photolink=photolink)
 
 
+# 리뷰 작성
 @bp.route('/writereview/<int:book_id>/<string:photolink>', methods=('POST',))
 def create_review(book_id, photolink):
     print(photolink)
@@ -28,6 +29,7 @@ def create_review(book_id, photolink):
             user = LibraryUser.query.filter_by(email=session['email']).first()
             possible = BookReview.query.filter_by(
                 user_id=session['email'], book_id=book_id).first()
+
             if possible:
                 flash("리뷰는 한 번만 작성 가능합니다.")
                 return redirect(url_for('detail.book_detail', book_id=book_id, photolink=photolink))
@@ -59,6 +61,7 @@ def create_review(book_id, photolink):
     return redirect(url_for('detail.book_detail', book_id=book_id, photolink=photolink))
 
 
+# 리뷰 삭제
 @bp.route('/deletereview/<int:book_id>/<int:review_id>')
 def delete_review(book_id, review_id):
     photolink = 12398978982
@@ -89,10 +92,7 @@ def delete_review(book_id, review_id):
     flash("삭제가 완료되었습니다.")
     return redirect(url_for('detail.book_detail', book_id=book_id, photolink=photolink))
 
-# %23말고 #으로 전달하는 방법
-
-
-# +int(str('#'))+'modiphoto'
+# 리뷰 수정(버튼을 누르면 해당하는 위치의 폼을 수정창으로 변경)
 @bp.route('/modifyreview/<int:book_id>/<int:review_id>/<string:photolink>')
 def modify_review(book_id, review_id, photolink):
     print(photolink)
@@ -119,7 +119,7 @@ def modify_review(book_id, review_id, photolink):
                            nowrate=nowrate, ratenum=ratenum,
                            book=review_info, photolink=photolink)
 
-
+# 리뷰 수정(입력받은 폼을 업데이트하여 저장)
 @bp.route('/modifyreview2/<int:book_id>/<int:review_id>/<int:nowrate>/<int:ratenum>/<string:photolink>',
           methods=('POST',))
 def modify_review2(book_id, review_id, nowrate, ratenum, photolink):
@@ -153,11 +153,7 @@ def modify_review2(book_id, review_id, nowrate, ratenum, photolink):
     return redirect(url_for('detail.book_detail', book_id=book_id, photolink=photolink))
 
 
-@bp.route('/upload')
-def render_file():
-    return render_template('upload.html')
-
-
+# 리뷰 최초 생성 시 사진 업로드(저장)
 @bp.route('/fileUpload/<int:book_id>', methods=('POST',))
 def upload_file(book_id):
     if request.method == 'POST':
@@ -169,10 +165,10 @@ def upload_file(book_id):
 
         flash("업로드 성공")
         return redirect("/../detail/book/"+str(book_id)+"/"+photolink+"#"+"photo")
-        # return redirect(url_for('detail.book_detail2', book_id=book_id, photolink=photolink))
     return '실패'
 
 
+# 리뷰 수정 시 사진 업로드
 @bp.route('/modifileUpload/<int:book_id>/<int:review_id>', methods=('POST',))
 def modiupload_file(book_id, review_id):
     print(review_id)
@@ -185,6 +181,5 @@ def modiupload_file(book_id, review_id):
 
         flash("업로드 성공")
         # return redirect("/../detail/modifyreview/"+str(book_id)+"/"+str(review_id)+"/"+photolink+"#"+"photo")
-
-    return redirect(url_for('detail.modify_review', book_id=book_id, review_id=review_id, photolink=photolink))
+        return redirect(url_for('detail.modify_review', book_id=book_id, review_id=review_id, photolink=photolink))
     return '실패'

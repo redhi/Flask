@@ -1,5 +1,4 @@
 {%extends "Base.html"%}
-
 {%block page_content %}
 <form action="{{ url_for('user.register') }}" method="post">
 <div class="register">
@@ -20,7 +19,6 @@
         <label for="name">이름</label>
         <input class="form-control" id="name" name="name" placeholder="이름">
     </div>
-
     <input class="btn3 btn-success" id="submit" type="submit" value="회원가입">
 </div>
 </form>
