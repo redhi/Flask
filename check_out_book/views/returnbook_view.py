@@ -79,12 +79,14 @@ def reservationreturn(book, findbook):
         book_id=book.book_id).all()
 
     for findwho in findwholist2:
-        print("findwho.book_num")
-        print(findwho.book_num)
-        print(nowbooknum)
-        if nowbooknum < findwho.book_num:  # 예약받은 순번이 앞에 순번보다 높으면
-            findwho.book_num -= 1  # 빼줌, 아니면 앞에 순번 유지시켜줘야함
-            db.session.commit()
+
+        if len(findwholist2) != 1:  # 혼자 남은게 아니면
+            print("findwho.book_num")
+            print(findwho.book_num)
+            print(nowbooknum)
+            if nowbooknum < findwho.book_num:  # 예약받은 순번이 앞에 순번보다 높으면
+                findwho.book_num -= 1  # 빼줌, 아니면 앞에 순번 유지시켜줘야함
+                db.session.commit()
 
 
 # 반납하기
