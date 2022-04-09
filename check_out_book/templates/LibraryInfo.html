@@ -30,15 +30,13 @@
 <script>
     const container = document.getElementById('map');
 
-    const option = { // 지도를 생성할 떄 필요한 기본 옵션
+    const option = { 
         center: new kakao.maps.LatLng(33.450701, 126.570667),
-        level: 3, // 지도의 레벨(확대,축소 정도)
-        //marker: markers,
+        level: 3,
+        
     };
     const map = new kakao.maps.Map(container, option);
 
-
-    // Geolocation, Geocoding
     const geocoder = new kakao.maps.services.Geocoder();
     geocoder.addressSearch("후암동 30-84", function (result, status) {
         if (status === kakao.maps.services.Status.OK) {

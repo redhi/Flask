@@ -1,10 +1,9 @@
 import datetime
-from flask import Blueprint, render_template, request, url_for, session, flash
-from flask.helpers import stream_with_context
-from check_out_book.models import *
-from werkzeug.utils import redirect
-from dateutil.relativedelta import relativedelta
 
+from dateutil.relativedelta import relativedelta
+from flask import Blueprint, flash, render_template, request, session, url_for
+from models import *
+from werkzeug.utils import redirect
 
 bp = Blueprint('main', __name__, url_prefix='/')
 

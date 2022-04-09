@@ -1,18 +1,33 @@
+@font-face {
+  font-family: "GongGothicBold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicBold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
 .navbar {
   margin-bottom: 10px;
   display: flex;
-  background: #84b59f;
-  padding: 20px;
+  padding: 0px;
   justify-content: space-between;
+  border-bottom: 2px solid;
+  color: #84b59f;
 }
 .navbar2 {
   margin-bottom: 10px;
   display: flex;
-  padding: 10px;
+  /* padding: 10px; */
 }
 .alert2 {
   color: white;
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
   font-weight: bold;
   background-color: #a3c9a8;
   margin-bottom: 5px;
@@ -23,21 +38,19 @@
 }
 .alert-withdraw {
   color: white;
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
   font-weight: bold;
   background-color: rgb(248, 81, 81);
   margin-bottom: 10px;
 }
-
 .search {
   height: 50px;
   width: 370px;
-  border: 3px solid #84b59f;
-  border-radius: 5px;
+  border: 2px solid #84b59f;
   margin-left: auto;
 }
 .search input {
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
   font-weight: bold;
   font-size: 15px;
   width: 270px;
@@ -47,7 +60,7 @@
   float: left;
 }
 .search button {
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
   width: 70px;
   height: 100%;
   float: right;
@@ -70,8 +83,8 @@
 }
 .nav-link {
   text-decoration-line: none;
-  color: white;
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "GongGothicBold";
+  color: black;
 }
 a:hover {
   color: green;
@@ -83,14 +96,12 @@ a:hover {
   padding: 0.5rem 1rem;
   text-decoration: none;
   font-weight: bold;
-  color: white;
-  background: #a3c9a8;
+  /* background: #a3c9a8; */
 }
 
 .nav-title {
   display: inline-block;
   /* vertical-align: middle; */
-  color: white;
   font-size: x-large;
   font-weight: bold;
   margin: 0.5rem;
@@ -109,17 +120,17 @@ a:hover {
   height: 44px;
 }
 .book-item {
-  border: 2.5px solid #e3d081;
+  border: 2px solid #e3d081;
   display: inline-block;
   font-size: 15px;
   background-color: white;
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
   padding: 10px 10px 10px 10px;
   box-sizing: border-box;
   text-align: center;
 }
 .nonebook {
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
   font-size: 20px;
   display: flex;
   justify-content: center;
@@ -150,10 +161,10 @@ a:hover {
 }
 .photoupload {
   margin-bottom: 10px;
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
 }
 .photoupload2 {
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
   font-size: 16px;
   font-weight: bold;
   border-radius: 5px;
@@ -251,7 +262,7 @@ body {
 }
 
 .filebox.bs3-primary label {
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
   font-size: 16px;
   font-weight: bold;
   border-radius: 5px;
@@ -273,7 +284,7 @@ body {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto;
   font-size: 18px;
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
   align-items: center;
   padding: 10px 20px 10px 10px;
   margin-bottom: 15px;
@@ -291,14 +302,14 @@ body {
   display: grid;
   grid-column-start: 2;
   grid-column-end: 4;
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
 }
 .book-description {
   display: grid;
 }
 .review {
   margin-bottom: 10px;
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
 }
 .reviewinfo {
   margin-bottom: 10px;
@@ -313,10 +324,10 @@ body {
   display: flex;
 }
 .write-review {
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
 }
 .review-now {
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
   padding-bottom: 10px;
   margin-left: 5px;
 }
@@ -412,7 +423,7 @@ body {
   padding: 0;
 }
 .register {
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
   display: block;
   border: 3px solid #84b59f;
   padding-top: 25px;
@@ -425,14 +436,14 @@ body {
   transform: translate(-50%, -35%);
 }
 .form-group2 label {
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
   font-size: 20px;
 }
 .form-group2 {
   margin-bottom: 5px;
 }
 .form-group2 input {
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
   font-size: 20px;
 
   display: flex;
@@ -449,16 +460,16 @@ body {
   margin-bottom: 5px;
 }
 .form-group label {
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
 
   font-size: 20px;
 }
 
 .form-group input {
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
   font-size: 20px;
   height: 33px;
-  width: 83.4%;
+  width: 100%;
   display: flex;
   border: 1px solid;
   outline: none;
@@ -469,7 +480,7 @@ body {
   padding-right: 0.5rem;
 }
 .form-group2 input {
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
   font-size: 20px;
   height: 33px;
   width: 100%;
@@ -483,7 +494,7 @@ body {
   padding-right: 0.5rem;
 }
 .btn {
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
   font-size: 16px;
   font-weight: bold;
   border-radius: 5px;
@@ -497,7 +508,7 @@ body {
 }
 .btn-withdraw {
   margin-left: 20px;
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
   font-size: 20px;
   font-weight: bold;
   border-radius: 5px;
@@ -507,7 +518,7 @@ body {
   padding: 5px;
 }
 .btn2 {
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
   font-size: 16px;
   font-weight: bold;
   border-radius: 5px;
@@ -518,7 +529,7 @@ body {
 }
 .btn3 {
   margin-top: 10px;
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
   font-size: 16px;
   font-weight: bold;
   border-radius: 5px;
@@ -529,7 +540,7 @@ body {
   padding: 5px;
 }
 .star-btn {
-  width: 70%;
+  width: 100%;
   margin: 10px auto;
   display: flex;
   justify-content: flex-end;
@@ -540,13 +551,13 @@ body {
   grid-auto-rows: minmax(200px, auto);
   grid-row-gap: 20px;
   margin-top: 10px;
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
   font-weight: bold;
 }
 .libraryinfo {
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
 
   width: 1060px;
   margin: 0 auto;
@@ -559,7 +570,7 @@ h3 {
 }
 .pagination {
   margin-top: 20px;
-  font-family: "Gowun Dodum", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
 }
 .page-item active {
   background-color: #a3c9a8;

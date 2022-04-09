@@ -1,20 +1,22 @@
 import datetime
-from flask import Blueprint, render_template, request, url_for, session, flash
-from check_out_book.models import *
-from werkzeug.utils import redirect
-from dateutil.relativedelta import relativedelta
 
-bp = Blueprint('return', __name__, url_prefix='/return')
+from dateutil.relativedelta import relativedelta
+from flask import Blueprint, flash, render_template, request, session, url_for
+from models import *
+from werkzeug.utils import redirect
+
+bp = Blueprint("return", __name__, url_prefix="/return")
 
 
 # 대여한 책목록
-@bp.route('/booklist')
+@bp.route("/booklist")
 def returnbooklist():
-    rentbook_list = CheckOutBook.query.filter_by(
-        user_id=session['email']).all()
+    rentbook_list = CheckOutBook.query.filter_by(user_id=session["email"]).all()
     now = datetime.datetime.now()
     datenow = datetime.date(now.year, now.month, now.day)
-    return render_template('ReturnBook.html', rentbook_list=rentbook_list, datenow=datenow)
+    return render_template(
+        "ReturnBook.html", rentbook_list=rentbook_list, datenow=datenow
+    )
 
 
 # 반납 시 재고가 0일때 예약 처리
@@ -26,8 +28,7 @@ def reservationreturn(book, findbook):
 
     for findwho in findwholist:
         print(findwho)
-        rentbooknum = CheckOutBook.query.filter_by(
-            user_id=findwho.user_id).count()
+        rentbooknum = CheckOutBook.query.filter_by(user_id=findwho.user_id).count()
         print(rentbooknum)
         # 빌릴 수 있는 권수 초과면 넘어감
         if rentbooknum > 4:
@@ -35,8 +36,7 @@ def reservationreturn(book, findbook):
 
         # 사용자의 대여기록을 통해 반납기한 지난 책 확인
         datenow = datetime.date(now.year, now.month, now.day)  # 현재날짜
-        rentbooklist = CheckOutBook.query.filter_by(
-            user_id=findwho.user_id).all()
+        rentbooklist = CheckOutBook.query.filter_by(user_id=findwho.user_id).all()
         count = 0
         stopdate = 0
 
@@ -60,13 +60,16 @@ def reservationreturn(book, findbook):
         nowbooknum = findwho.book_num  # 현재 예약 성공한 사용자의 대기순번 저장
 
         # 위에 조건 2개 통과하면 대여함
-        end_date = now+relativedelta(weeks=2)
-        check_out = CheckOutBook(book_id=findbook.id, book_name=book.book_name, book_link=findbook.link,
-                                 user_id=findwho.user_id, start_date=datetime.date(
-                                     now.year, now.month, now.day),
-                                 end_date=datetime.date(
-                                     end_date.year, end_date.month, end_date.day),
-                                 rating=findbook.rating)
+        end_date = now + relativedelta(weeks=2)
+        check_out = CheckOutBook(
+            book_id=findbook.id,
+            book_name=book.book_name,
+            book_link=findbook.link,
+            user_id=findwho.user_id,
+            start_date=datetime.date(now.year, now.month, now.day),
+            end_date=datetime.date(end_date.year, end_date.month, end_date.day),
+            rating=findbook.rating,
+        )
 
         db.session.delete(findwho)  # 해당하는 사람 예약 테이블에서 지우고
         db.session.add(check_out)
@@ -75,8 +78,7 @@ def reservationreturn(book, findbook):
 
     # 다른 애들 순번 다 마이너스 1해주자~
     print("여기까지 옴")
-    findwholist2 = ReservationBook.query.filter_by(
-        book_id=book.book_id).all()
+    findwholist2 = ReservationBook.query.filter_by(book_id=book.book_id).all()
 
     for findwho in findwholist2:
 
@@ -90,7 +92,7 @@ def reservationreturn(book, findbook):
 
 
 # 반납하기
-@bp.route('/<int:pid>', methods=('POST',))
+@bp.route("/<int:pid>", methods=("POST",))
 def returnbook(pid):
     print(pid)
     now = datetime.datetime.now()
@@ -104,12 +106,17 @@ def returnbook(pid):
     findbook.stock += 1
     db.session.commit()
 
-    totalcheck_out = TotalCheckOutBook(book_id=book.book_id, user_id=session['email'],
-                                       book_name=book.book_name, book_link=findbook.link,
-                                       start_date=book.start_date, end_date=datenow,
-                                       rating=book.rating)
+    totalcheck_out = TotalCheckOutBook(
+        book_id=book.book_id,
+        user_id=session["email"],
+        book_name=book.book_name,
+        book_link=findbook.link,
+        start_date=book.start_date,
+        end_date=datenow,
+        rating=book.rating,
+    )
     db.session.add(totalcheck_out)
     db.session.delete(book)
     db.session.commit()
     flash("반납되었습니다.")
-    return redirect(url_for('return.returnbooklist'))  # 함수명!!! main.함수명
+    return redirect(url_for("return.returnbooklist"))  # 함수명!!! main.함수명

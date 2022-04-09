@@ -1,12 +1,12 @@
-'''
+"""
 설명...
 :create_app() : :초기 flask 서버 실행 코드
-'''
+"""
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-import config
+from flask_sqlalchemy import SQLAlchemy
 
+import config
 
 db = SQLAlchemy()
 
@@ -19,8 +19,16 @@ def create_app():
     db.init_app(app)  # SQLAlchemy 객체를 app 객체와 이어줍니다.
     Migrate().init_app(app, db)
 
-    from .views import main_view, detail_view, totalcheckout_view, returnbook_view, libraryinfo_view, user_view, mypage_view
-    from . import models
+    import models
+    from views import (
+        detail_view,
+        libraryinfo_view,
+        main_view,
+        mypage_view,
+        returnbook_view,
+        totalcheckout_view,
+        user_view,
+    )
 
     app.register_blueprint(main_view.bp)
     app.register_blueprint(detail_view.bp)
@@ -30,7 +38,7 @@ def create_app():
     app.register_blueprint(user_view.bp)
     app.register_blueprint(mypage_view.bp)
     # 비밀번호 암호화
-    app.secret_key = 'afsfsa'
+    app.secret_key = "afsfsa"
     # 세션 일정시간 서버 저장파일
     app.config["SESSION_TYPE"] = "filesystem"
 
@@ -38,4 +46,4 @@ def create_app():
 
 
 if __name__ == "__main__":
-    create_app().run()
+    create_app().run(debug=True)
