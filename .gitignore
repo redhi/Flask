@@ -5,7 +5,8 @@
 *.csv
 
 *.pyc
-
+config.py
+*.db
 
 # Created by https://www.toptal.com/developers/gitignore/api/venv,python,flask,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=venv,python,flask,visualstudiocode
